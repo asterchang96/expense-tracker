@@ -8,6 +8,10 @@ const categorySchema = new Schema({
   incomeOrExpenses:{
     type: String, 
     required: true 
+  },
+  iconClass:{
+    type: String, 
+    required: true
   }
 
 })

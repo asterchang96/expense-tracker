@@ -16,15 +16,21 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 // setting static files
 app.use(express.static('public'))
-
+const Category = require('./models/category') // 載入 category model
+const Record = require('./models/record') // 載入 record model
 
 app.get('/', (req, res) => {
-    res.render('show')
+  Record.find()
+    .lean()
+    .then(records => res.render('index', { records }))
+    .catch(err => console.error(error))
+    
 })
 
 app.get('/new', (req, res) => {

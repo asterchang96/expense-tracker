@@ -1,0 +1,88 @@
+{
+  "recordSeeders": [
+    {
+      "name": "肯德基",
+      "incomeOrExpenses": "支出",
+      "category": "食",
+      "date": "2021/07/25",
+      "amount": 500
+    },
+    {
+      "name": "Netflix月費",
+      "incomeOrExpenses": "支出",
+      "category": "樂",
+      "date": "2021/07/25",
+      "amount": 1250
+    },
+    {
+      "name": "早餐",
+      "incomeOrExpenses": "支出",
+      "category": "食",
+      "date": "2021/07/24",
+      "amount": 100
+    },
+    {
+      "name": "發票中獎",
+      "incomeOrExpenses": "收入",
+      "category": "零用錢",
+      "date": "2021/07/24",
+      "amount": 200
+    },
+    {
+      "name": "ZARA",
+      "incomeOrExpenses": "支出",
+      "category": "衣",
+      "date": "2021/07/22",
+      "amount": 2000
+    },
+    {
+      "name": "6月薪資",
+      "incomeOrExpenses": "收入",
+      "category": "薪水",
+      "date": "2021/07/25",
+      "amount": 45000
+    }
+  ],
+  "categorySeeders":[
+    {
+      "category": "食",
+      "incomeOrExpenses": "支出",
+      "iconClass": "fas fa-utensils"
+    },
+    {
+      "category": "衣",
+      "incomeOrExpenses": "支出",
+      "iconClass": "fas fa-tshirt"
+    },
+    {
+      "category": "住",
+      "incomeOrExpenses": "支出",
+      "iconClass": "fas fa-home"
+    },
+    {
+      "category": "行",
+      "incomeOrExpenses": "支出",
+      "iconClass":"fas fa-shuttle-van"
+    },
+    {
+      "category": "育",
+      "incomeOrExpenses": "支出",
+      "iconClass": "fas fa-user-graduate"
+    },
+    {
+      "category": "樂",
+      "incomeOrExpenses": "支出",
+      "iconClass": "far fa-laugh-squint"
+    },
+    {
+      "category": "薪水",
+      "incomeOrExpenses": "收入",
+      "iconClass": "fas fa-dollar-sign"
+    },
+    {
+      "category": "零用錢",
+      "incomeOrExpenses": "收入",
+      "iconClass": "fas fa-hand-holding-usd"
+    }
+  ]
+}
