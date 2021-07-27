@@ -1,16 +1,15 @@
-.row{
-  border: 3px solid burlywood
-
+#showOneItem{
+  border-bottom: 1px solid #dddfe2;
 }
 
-.column{
-  border: 3px solid greenyellow
+.list-group-item{
+  border: 0px;
 }
 
 #categoryIcon{
-  padding: 1rem;
   display: flex;
   align-items: center;
+
 }
 
 #showGroup{
@@ -18,13 +17,37 @@
   flex-flow: row;
 }
 
+#showIconIncomeOrExpenses{
+  display: flex;
+  flex-flow: row;
+  align-self: center;
+}
+
+#showIncomeOrExpenses{
+  align-self:flex-end;
+  font-size:small;
+}
+
 #showNameCategoryDateAmount{
   display: flex;
   flex-flow: row;
-
+  align-self: center;
 }
+
+#showNameCategory{
+  font-size: large;
+}
+#showDate{
+  font-size:small;
+}
+#showAmount{
+  align-self: center;
+  font-size: x-large;
+}
+
 #showNameCategoryDate{
   display: flex;
   flex-flow: column;
+  align-self: center
 
 }
