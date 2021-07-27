@@ -8,12 +8,14 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected!')
 
-  Category.create({ category: "食"})
-  Category.create({ category: "衣"})
-  Category.create({ category: "住"})
-  Category.create({ category: "行"})
-  Category.create({ category: "育"})
-  Category.create({ category: "樂"})
+  Category.create({ category: "食", incomeOrExpenses: "支出"})
+  Category.create({ category: "衣", incomeOrExpenses: "支出"})
+  Category.create({ category: "住", incomeOrExpenses: "支出"})
+  Category.create({ category: "行", incomeOrExpenses: "支出"})
+  Category.create({ category: "育", incomeOrExpenses: "支出"})
+  Category.create({ category: "樂", incomeOrExpenses: "支出"})
+  Category.create({ category: "薪水", incomeOrExpenses: "收入"})
+  Category.create({ category: "零用錢", incomeOrExpenses: "收入"})
   
   console.log('category done')
 })

@@ -5,6 +5,10 @@ const recordSchema = new Schema({
     type: String,
     required: true 
   },
+  incomeOrExpenses:{
+    type: String, 
+    required: true 
+  },
   category: {
     type: String,
     required: true 
