@@ -1,0 +1,30 @@
+.row{
+  border: 3px solid burlywood
+
+}
+
+.column{
+  border: 3px solid greenyellow
+}
+
+#categoryIcon{
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+#showGroup{
+  display: flex;
+  flex-flow: row;
+}
+
+#showNameCategoryDateAmount{
+  display: flex;
+  flex-flow: row;
+
+}
+#showNameCategoryDate{
+  display: flex;
+  flex-flow: column;
+
+}

@@ -4,9 +4,35 @@
   <li>{{this.date}}</li>
   <li>{{this.amount}}</li> --}}
 
-<ul class="list-group list-group-flush">
+<div class="list-group list-group-flush" style="border: 1px;">
   {{#each records}}
+  <div class="row">
+
+    <div id="showGroup" class="col-8">
+      {{!-- icon --}}
+      <div class="col-3">
+        <i id="categoryIcon"class="fas fa-question-circle fa-5x"></i>
+      </div>
+      <div class="col-9" id="showNameCategoryDateAmount">
+
+        <div id="showNameCategoryDate" class="col-6">
+          <div class="list-group-item">{{this.category}} / {{this.name}}</div>
+          <div class="list-group-item">2021-05-26</div>               
+        </div>
+
+        <div id="showAmount" class="col-6">
+          <div class="list-group-item">{{this.amount}}</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="btn">Edit</div>
+      <div class="btn">Delete</div>
+    </div>
+
+  </div>
   
-  <li class="list-group-item">{{this.name}}</li>
   {{/each}}
-</ul>
+</div>
