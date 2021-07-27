@@ -1,7 +1,5 @@
-
-
-<div>
-  <select class="form-select" aria-label="Default select example">
+<div id="selectCategory">
+  <select class="form-select">
   <option selected>全部類別</option>
   {{#each categories}}
   <option>{{ this.category }}</option>
@@ -9,8 +7,8 @@
 </select>
 </div>
 
-<div>
-  <h3>總金額 : {{ totalAmount }}</h3>
+<div id="showTotalAmount">
+  <h3>總金額 : <span id="formatTotalAmount">{{ totalAmount }}</span></h3>
 </div>
 
 
