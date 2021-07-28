@@ -28,14 +28,38 @@ const Record = require('./models/record') // 載入 record model
 app.get('/', async (req, res) => {
   let totalAmount = 0
   const categories = await Category.find().lean()
-  const records = await Record.find().lean()
-
-  res.render('index', { records, categories, totalAmount })
+  return Record.find()
+    .lean()
+    .sort({ date: 'asc' })
+    .then((records) => {// TODO1: totalAmount by records amount total
+      records.forEach((record) => {
+        if(record.incomeOrExpenses === '收入') totalAmount += record.amount
+        else totalAmount -= record.amount
+      })
+      res.render('index', { records, categories, totalAmount })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  
+  // TODO2: icon if records category === categories's category then put categories icon 
 })
 
 app.get('/new', (req, res) => {
+  // TODO3 設計表單
+  // TODO4 可以連結、新增至mongoDB
     res.render('new')
 })
+
+// TODO5 使用至edit表單
+// TODO6 可以連結、修改至mongoDB
+
+// TODO7 DELETE 可以使用 連至mongoDB刪除
+// TODO8 雙重確認
+
+// TODO9 封包修正
+
+// TODO10 連至koruko
 
 app.listen( PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`)
