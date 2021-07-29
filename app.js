@@ -66,9 +66,11 @@ app.get('/records/new', (req, res) => {
 })
 
 app.post('/records', (req, res) => {
-  const { name, date, category, amount } = req.body
-  console.log(name, date, category, amount)
+  console.log(req.body)
+  /* const { name, date, category, amount } = req.body
+  console.log(name, date, category, amount) */
 })
+
 // TODO3 設計表單
 // TODO4 可以連結、新增至mongoDB
 // TODO5 使用至edit表單

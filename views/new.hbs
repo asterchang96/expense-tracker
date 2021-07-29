@@ -1,16 +1,14 @@
 <form action="/records" method="POST" class="needs-validation" novalidate>
   <div class="form-row mb-3">
 
-    <div class="input-group mb-3">
-      <div class="input-group">
-        <button class="btn btn-outline-secondary" type="button" id="incomeButton" >收入</button>
-        <button class="btn btn-outline-secondary" type="button" id="expensesButton">支出</button>
-      </div>
+    <div class="mb-3" style="display: flex;">
+        <input type="radio" class="btn btn-outline-secondary btn-check" id="incomeButton" name="incomeOrExpenses" value="收入"><label class="btn btn-outline-secondary incomeButton" for="incomeButton">收入</label>
+        <input type="radio" class="btn btn-outline-secondary btn-check" id="expensesButton" name="incomeOrExpenses" value="支出"><label class="btn btn-outline-secondary expensesButton" for="expensesButton">支出</label>
     </div>
 
     <div class="form-group col-12">
       <label for="name">名稱</label>
-      <input type="text" class="form-control " name="name" id="name" required>
+      <input type="text" class="form-control" name="name" id="name" required>
       <div class="invalid-feedback">必填欄位</div>
     </div>
 
@@ -55,6 +53,7 @@
   const form = document.querySelector('form')
   
   incomeButton.addEventListener('click', function onIncomeButtonClicked(event) {
+    console.log('click finish')
     document.getElementById('buttonCategoryIncomeOrExpenses').setAttribute('list', 'buttonIncome')
   })
 

@@ -1,0 +1,8 @@
+.expensesButton{
+border-top-left-radius:0;
+border-bottom-left-radius:0;
+}
+.incomeButton{
+border-top-right-radius:0;
+border-bottom-right-radius:0;
+}
