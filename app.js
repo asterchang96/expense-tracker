@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
 const PORT = 3000
 
 const exphbs = require('express-handlebars')
@@ -16,7 +17,7 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-
+app.use(bodyParser.urlencoded({ extended: true }))
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
@@ -31,10 +32,14 @@ app.get('/', async (req, res) => {
   return Record.find()
     .lean()
     .sort({ date: 'asc' })
-    .then((records) => {// TODO1: totalAmount by records amount total
+    .then((records) => {
+      
       records.forEach((record) => {
+        // TODO1: totalAmount by records amount total
         if(record.incomeOrExpenses === '收入') totalAmount += record.amount
         else totalAmount -= record.amount
+        // TODO2: icon if records category === categories's category then put categories icon
+
       })
       res.render('index', { records, categories, totalAmount })
     })
@@ -42,15 +47,30 @@ app.get('/', async (req, res) => {
       console.log(error)
     })
   
-  // TODO2: icon if records category === categories's category then put categories icon 
+   
 })
 
-app.get('/new', (req, res) => {
-  // TODO3 設計表單
-  // TODO4 可以連結、新增至mongoDB
-    res.render('new')
+app.get('/records/new', (req, res) => {
+  Category.find()
+    .lean()
+    .then((categories) => {
+      const categoryIncome = categories.filter(element => {
+        if (element.incomeOrExpenses === '收入') return element.category
+      })
+      const categoryExpense = categories.filter(element => {
+        if (element.incomeOrExpenses === '支出') return element.category
+      })
+      res.render('new', { categoryIncome, categoryExpense } )
+    })
+    
 })
 
+app.post('/records', (req, res) => {
+  const { name, date, category, amount } = req.body
+  console.log(name, date, category, amount)
+})
+// TODO3 設計表單
+// TODO4 可以連結、新增至mongoDB
 // TODO5 使用至edit表單
 // TODO6 可以連結、修改至mongoDB
 

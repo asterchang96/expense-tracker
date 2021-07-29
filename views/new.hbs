@@ -1,1 +1,75 @@
-<h1>this is new page</h1>
+<form action="/records" method="POST" class="needs-validation" novalidate>
+  <div class="form-row mb-3">
+
+    <div class="input-group mb-3">
+      <div class="input-group">
+        <button class="btn btn-outline-secondary" type="button" id="incomeButton" >收入</button>
+        <button class="btn btn-outline-secondary" type="button" id="expensesButton">支出</button>
+      </div>
+    </div>
+
+    <div class="form-group col-12">
+      <label for="name">名稱</label>
+      <input type="text" class="form-control " name="name" id="name" required>
+      <div class="invalid-feedback">必填欄位</div>
+    </div>
+
+    <div class="form-group col-12">
+      <label for="date">日期</label>
+      <input type="date" class="form-control" id="date" name="date">
+    </div>
+
+    <div class="form-group col-12">
+      <label for="category">類別</label>
+      {{!-- 選擇收入/支出來變換list --}}
+      <input class="form-control" name="category" id="buttonCategoryIncomeOrExpenses" required>
+      <datalist id=buttonIncome>
+        {{#each categoryIncome}}
+        <option>{{ this.category }}</option>
+        {{/each}}
+      </datalist>
+      <datalist id=buttonExpenses>
+        {{#each categoryExpense}}
+        <option>{{ this.category }}</option>
+        {{/each}}
+      </datalist>
+      <div class="invalid-feedback">必填欄位</div>
+    </div>
+
+    <div class="form-group col-12">
+      <label for="amount">金額</label>
+      <input type="number" class="form-control" name="amount" id="amount" required>
+      <div class="invalid-feedback">必填欄位</div>
+    </div>
+    
+  </div>
+  <div style="text-align: center;">
+    <button id="submit" class="btn btn-warning">建立</button>
+    <a href="/" class="btn btn-warning">返回</a>
+  </div>
+</form>
+<script>
+  const incomeButton = document.querySelector('#incomeButton')
+  const expensesButton = document.querySelector('#expensesButton')
+  const submitButton = document.querySelector('#submit')
+  const form = document.querySelector('form')
+  
+  incomeButton.addEventListener('click', function onIncomeButtonClicked(event) {
+    document.getElementById('buttonCategoryIncomeOrExpenses').setAttribute('list', 'buttonIncome')
+  })
+
+  expensesButton.addEventListener('click', function onExpensesButtonClicked(event) {
+    document.getElementById('buttonCategoryIncomeOrExpenses').setAttribute('list', 'buttonExpenses')
+  })
+
+  submitButton.addEventListener('click', function onSubmitButtonClicked(event) {
+    form.classList.add('was-validated')
+  })
+
+  form.addEventListener('submit', function onFormSubmit(event) {
+    if (!form.checkValidity()) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+  })
+</script>
