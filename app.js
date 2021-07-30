@@ -51,6 +51,28 @@ app.get('/', async (req, res) => {
     })
 })
 
+// TODO8 search
+app.get('/search', async(req, res)=> {
+  const categories = await Category.find().sort({ _id: 'asc' }).lean()
+  const { chooseCategory } = req.query
+  let totalAmount = 0
+  //all
+  return await Record.find({ category : chooseCategory })
+    .lean()
+    .sort({ _id: 'desc'})
+    .then((records) => {
+      records.forEach((record) => {
+        if(record.incomeOrExpenses === '收入') totalAmount += record.amount
+        else totalAmount -= record.amount
+      })
+      
+      res.render('index', { records, categories, totalAmount })
+    })
+})
+  
+
+
+
 app.get('/records/new', (req, res) => {
     getCategory()
     return res.render('new', { categoryIncome, categoryExpense } )
