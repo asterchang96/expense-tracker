@@ -26,6 +26,9 @@ app.use(express.static('public'))
 const Category = require('./models/category') // 載入 category model
 const Record = require('./models/record') // 載入 record model
 
+let categoryIncome = null
+let categoryExpense = null
+
 app.get('/', async (req, res) => {
   let totalAmount = 0
   const categories = await Category.find().lean()
@@ -46,43 +49,79 @@ app.get('/', async (req, res) => {
     .catch((error) => {
       console.log(error)
     })
-  
-   
 })
 
 app.get('/records/new', (req, res) => {
-  Category.find()
-    .lean()
-    .then((categories) => {
-      const categoryIncome = categories.filter(element => {
-        if (element.incomeOrExpenses === '收入') return element.category
-      })
-      const categoryExpense = categories.filter(element => {
-        if (element.incomeOrExpenses === '支出') return element.category
-      })
-      res.render('new', { categoryIncome, categoryExpense } )
-    })
-    
+    getCategory()
+    return res.render('new', { categoryIncome, categoryExpense } )
 })
 
 app.post('/records', (req, res) => {
-  console.log(req.body)
-  /* const { name, date, category, amount } = req.body
-  console.log(name, date, category, amount) */
+  // TODO 可以連結、新增至mongoDB
+  const { incomeOrExpenses, name, date, category, amount } = req.body
+
+  return Record.create({ incomeOrExpenses, name, date, category, amount })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
-// TODO3 設計表單
-// TODO4 可以連結、新增至mongoDB
-// TODO5 使用至edit表單
-// TODO6 可以連結、修改至mongoDB
 
-// TODO7 DELETE 可以使用 連至mongoDB刪除
+app.get('/records/:id/edit', async(req, res) => {
+  getCategory()
+  const id = req.params.id
+  return Record.findById(id)
+    .lean()
+    .then(record => res.render('edit', { record,  categoryIncome, categoryExpense }))
+    .catch(error => console.log(error))
+})
+
+app.post('/records/:id', (req, res) => {
+  // 可以連結、修改至mongoDB
+  const id = req.params.id
+  const { incomeOrExpenses, name, date, category, amount } = req.body
+  Record.findById(id)
+    .then(record => {
+      record.incomeOrExpenses = incomeOrExpenses
+      record.name = name
+      record.date = date
+      record.category = category
+      record.amount = amount
+      record.save()
+    })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+app.post('/records/:id/delete', (req, res) => {
+  // DELETE 可以使用 連至mongoDB刪除
+  const id = req.params.id.trim()
+  console.log(id)
+  return Record.findById(id)
+    .then(record => record.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+
+
 // TODO8 雙重確認
-
 // TODO9 封包修正
-
 // TODO10 連至koruko
 
 app.listen( PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`)
 })
+
+//區分收入/支出，對應category
+function getCategory(){
+  Category.find()
+    .lean()
+    .then((categories) => {
+      categoryIncome = categories.filter(element => {
+        if (element.incomeOrExpenses === '收入') return element.category
+      })
+      categoryExpense = categories.filter(element => {
+        if (element.incomeOrExpenses === '支出') return element.category
+      })
+    })
+}
