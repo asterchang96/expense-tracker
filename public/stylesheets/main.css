@@ -14,3 +14,12 @@ footer {
   color: #666666;
   margin-top: 5px;
 }
+
+#formNewEditPage{
+  width: 50%;
+  margin: 0px auto;
+  padding:2rem;
+  background-color: #eee;
+  border-radius: 10px;
+
+}

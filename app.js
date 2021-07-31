@@ -66,7 +66,7 @@ app.get('/search', async(req, res)=> {
         if(record.incomeOrExpenses === '收入') totalAmount += record.amount
         else totalAmount -= record.amount
       })
-     res.render('index', { records, categories, totalAmount })
+     res.render('index', { records, categories, totalAmount, chooseCategory })
     })    
 
 })
