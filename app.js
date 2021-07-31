@@ -5,6 +5,7 @@ const PORT = 3000
 
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 
 mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -18,8 +19,9 @@ db.once('open', () => {
 })
 
 app.use(bodyParser.urlencoded({ extended: true }))
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs'　}))
 app.set('view engine', 'hbs')
+app.use(methodOverride('_method'))
 
 // setting static files
 app.use(express.static('public'))
@@ -38,10 +40,10 @@ app.get('/', async (req, res) => {
     .then((records) => {
       
       records.forEach((record) => {
-        // TODO1: totalAmount by records amount total
+        // totalAmount by records amount total
         if(record.incomeOrExpenses === '收入') totalAmount += record.amount
         else totalAmount -= record.amount
-        // TODO2: icon if records category === categories's category then put categories icon
+        // TODO　icon if records category === categories's category then put categories icon
 
       })
       res.render('index', { records, categories, totalAmount })
@@ -51,12 +53,11 @@ app.get('/', async (req, res) => {
     })
 })
 
-// TODO8 search
+//  search
 app.get('/search', async(req, res)=> {
   const categories = await Category.find().sort({ _id: 'asc' }).lean()
   const { chooseCategory } = req.query
   let totalAmount = 0
-  //all
   return await Record.find({ category : chooseCategory })
     .lean()
     .sort({ _id: 'desc'})
@@ -65,21 +66,18 @@ app.get('/search', async(req, res)=> {
         if(record.incomeOrExpenses === '收入') totalAmount += record.amount
         else totalAmount -= record.amount
       })
-      
-      res.render('index', { records, categories, totalAmount })
-    })
+     res.render('index', { records, categories, totalAmount })
+    })    
+
 })
   
-
-
-
 app.get('/records/new', (req, res) => {
     getCategory()
     return res.render('new', { categoryIncome, categoryExpense } )
 })
 
 app.post('/records', (req, res) => {
-  // TODO 可以連結、新增至mongoDB
+  // 可以連結、新增至mongoDB
   const { incomeOrExpenses, name, date, category, amount } = req.body
 
   return Record.create({ incomeOrExpenses, name, date, category, amount })
@@ -124,8 +122,6 @@ app.post('/records/:id/delete', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
-
 // TODO8 雙重確認
 // TODO9 封包修正
 // TODO10 連至koruko
@@ -133,6 +129,7 @@ app.post('/records/:id/delete', (req, res) => {
 app.listen( PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`)
 })
+
 
 //區分收入/支出，對應category
 function getCategory(){

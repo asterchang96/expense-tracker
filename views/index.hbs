@@ -1,12 +1,11 @@
 <div id="selectCategory">
-  <form action="/search" method="GET">
-    <select name="chooseCategory" class="form-select" onchange="submit()">
-      <option selected disabled>選擇類別</option>
-      {{#each categories}}
-        <option value="{{ this.category }}">{{ this.category }}</option>
-      {{/each}}
+  <select name="chooseCategory" class="form-select" onchange="location = this.value;">
+    <option selected disabled>選擇類別</option>
+    <option value="./">所有類別</option>
+    {{#each categories}}
+      <option value="/search?chooseCategory={{ this.category }}">{{ this.category }}</option>
+    {{/each}}
   </select>
-</form>
 </div>
 
 <div id="showTotalAmount">
@@ -15,6 +14,7 @@
 
 
 <div class="list-group list-group-flush" style="border: 1px;">
+  {{#if records}}
   {{#each records}}
   <div class="row" id="showOneItem">
     <div id="showGroup" class="col-9 mt-1 mb-1">
@@ -47,5 +47,7 @@
 
   </div>
   {{/each}}
-
+  {{else}}
+    <p>沒有資料，新增一筆吧!</p>
+  {{/if}}
 </div>
