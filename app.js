@@ -23,24 +23,13 @@ db.once('open', () => {
 })
 
 app.use(bodyParser.urlencoded({ extended: true }))
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs',
-helpers:Helpers/* {
-  getIcon: function (a, b) {
-    function isSameCategory(categoryDatabase) {
-      return categoryDatabase.category === a
-    }
-    const iconClass = b.find(isSameCategory).iconClass
-    return iconClass
-  }
-} */
-}))
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs',helpers:Helpers}))
 
 Handlebars.registerHelper('getIcon', function (a, b) {
   function isSameCategory(categoryDatabase) {
       return categoryDatabase.category === a
-    }
-    const iconClass = b.find(isSameCategory).iconClass
-    return iconClass
+  }
+  return b.find(isSameCategory).iconClass
 })
 
 app.set('view engine', 'hbs')

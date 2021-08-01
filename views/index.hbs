@@ -26,7 +26,7 @@
 
         <div id="showNameCategoryDate" class="col-8">
           <span class="badge bg-light text-dark" id="showNameCategory">{{this.category}} / {{this.name}}</span>
-          <span class="badge bg-light  text-dark" id="showDate">{{this.date}}</span>               
+          <span class="badge bg-light text-dark" id="showDate">{{this.date}}</span>               
         </div>
 
         <div id="showAmount" class="col-4" style="text-align:center">
@@ -46,6 +46,6 @@
   </div>
   {{/each}}
   {{else}}
-    <p>沒有資料，新增一筆吧!</p>
+    <div style="text-align: center"><p style="display:inline">目前沒有資料，新增一筆吧... </p><i class="fas fa-pen"></i></div>
   {{/if}}
 </div>
