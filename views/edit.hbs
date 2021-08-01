@@ -2,10 +2,11 @@
   <form action="/records/{{record._id}}" method="POST" class="needs-validation" novalidate>
 
     <div class="mb-3" style="text-align: center">
+      
       <input type="radio" class="btn btn-outline-secondary btn-check" id="incomeButton" name="incomeOrExpenses"
-        value="收入"><label class="btn btn-outline-secondary incomeButton" for="incomeButton">收入</label>
+        value="收入" {{#is record.incomeOrExpenses '收入'}}checked="checked"{{/is}}><label class="btn btn-outline-secondary incomeButton" for="incomeButton">收入</label>
       <input type="radio" class="btn btn-outline-secondary btn-check" id="expensesButton" name="incomeOrExpenses"
-        value="支出"><label class="btn btn-outline-secondary expensesButton" for="expensesButton" style="margin-left: -.25rem;">支出</label>
+        value="支出" {{#is record.incomeOrExpenses '支出'}}checked="checked"{{/is}}><label class="btn btn-outline-secondary expensesButton" for="expensesButton" style="margin-left: -.25rem;">支出</label>
     </div>
 
     <div class="form-group col-12">
