@@ -2,16 +2,15 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
-const Helpers = require('handlebars-helpers')(['array', 'comparison'])
-const Handlebars  = require('handlebars')
-
+const handlebarsHelpers  = require('handlebars-helpers')(['array', 'comparison'])
+const Handlebars = require('handlebars')
 
 const routes = require('./routes/main')
 require('./config/mongoose')
 
 const app = express()
 
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs',helpers:Helpers}))
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: handlebarsHelpers }))
 app.set('view engine', 'hbs')
 
 Handlebars.registerHelper('getIcon', function (a, b) {
@@ -24,7 +23,6 @@ Handlebars.registerHelper('getIcon', function (a, b) {
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
-
 
 
 app.use(routes)

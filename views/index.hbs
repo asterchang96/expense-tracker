@@ -8,10 +8,10 @@
 </div>
 
 <div id="showTotalAmount">
-  <h3>總金額 : <span id="formatTotalAmount">{{ totalAmount }}</span></h3>
+  <h3>總金額 : <span id="formatTotalAmount" style="color: orange;">{{ totalAmount }}</span></h3>
 </div>
 
-<div class="list-group list-group-flush" style="border: 1px; padding:1rem;">
+<div class="list-group" style="border: 1px; padding:1rem;">
   {{#if records}}
   {{#each records}}
   <div class="row" id="showOneItem">
@@ -19,7 +19,7 @@
       {{!-- icon --}}
       <div id="showIconIncomeOrExpenses"class="col-3" style="align-self: center">
         <i id="categoryIcon"class="{{getIcon this.category ../categories}} fa-3x" style="width:60px; height:60px;"></i>
-        <span class="badge rounded-pill bg-warning text-dark" id="showIncomeOrExpenses">{{this.incomeOrExpenses}}</span>
+        <span id="showIncomeOrExpenses" class="badge rounded-pill bg-warning text-dark">{{this.incomeOrExpenses}}</span>
       </div>
 
       <div class="col-9" id="showNameCategoryDateAmount">
@@ -37,9 +37,9 @@
     </div>
 
     <div class="col-3" style="align-self: center">
-      <a class="btn btn-outline-success" href='/records/{{ this._id }}/edit'>Edit</a>
+      <a class="btn btn-secondary" href='/records/{{ this._id }}/edit'>編輯</a>
       <form action="./records/{{ this._id }}?_method=DELETE" method="post" style="display:inline">
-        <button class="btn btn-outline-danger" type="submit">Delete</button>
+        <button class="btn btn-danger" type="submit">刪除</button>
       </form>
     </div>
 

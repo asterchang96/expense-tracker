@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   const categories = await Category.find().lean()
   return Record.find()
     .lean()
-    .sort({ date: 'asc' })
+    .sort({ date: 'desc' })
     .then((records) => {
       records.forEach((record) => {
         if(record.incomeOrExpenses === '收入') totalAmount += record.amount

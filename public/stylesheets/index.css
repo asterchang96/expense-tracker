@@ -7,30 +7,13 @@
 
 #showTotalAmount{
   display: flex;
-  margin-bottom: 1rem;
   width: 95%;
 }
 
 #formatTotalAmount{
-  color: orange;
   font-size: 200%;
   vertical-align:text-top;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #showOneItem{
   border-bottom: 1px solid #dddfe2;
