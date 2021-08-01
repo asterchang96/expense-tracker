@@ -107,7 +107,7 @@ app.get('/records/:id/edit', async(req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/records/:id', (req, res) => {
+app.put('/records/:id', (req, res) => {
   // 可以連結、修改至mongoDB
   const id = req.params.id
   const { incomeOrExpenses, name, date, category, amount } = req.body
@@ -124,10 +124,9 @@ app.post('/records/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/records/:id/delete', (req, res) => {
+app.delete('/records/:id', (req, res) => {
   // DELETE 可以使用 連至mongoDB刪除
   const id = req.params.id.trim()
-  console.log(id)
   return Record.findById(id)
     .then(record => record.remove())
     .then(() => res.redirect('/'))

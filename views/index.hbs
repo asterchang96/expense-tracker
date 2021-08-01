@@ -38,7 +38,7 @@
 
     <div class="col-3" style="align-self: center">
       <a class="btn btn-outline-success" href='/records/{{ this._id }}/edit'>Edit</a>
-      <form action='./records/ {{ this._id }}/delete' method="post" style="display:inline">
+      <form action="./records/{{ this._id }}?_method=DELETE" method="post" style="display:inline">
         <button class="btn btn-outline-danger" type="submit">Delete</button>
       </form>
     </div>
