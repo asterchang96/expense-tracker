@@ -2,7 +2,7 @@
   <select name="chooseCategory" class="form-select" onchange="location = this.value;">
     <option value="./">所有類別</option>
     {{#each categories}}
-      <option value="/search?chooseCategory={{ this.category }}" {{!-- {{isEqual this.category chooseCategory}} --}}selected>{{ this.category }}</option>
+      <option value="/search?chooseCategory={{ this.category }}" {{#is this.category ../chooseCategory}}selected{{/is}}>{{ this.category }}</option>
     {{/each}}
   </select>
 </div>

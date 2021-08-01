@@ -6,7 +6,9 @@ const PORT = 3000
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
-const helpers = require('handlebars-helpers')
+const Helpers = require('handlebars-helpers')(['array', 'comparison'])
+const Handlebars  = require('handlebars')
+
 
 
 mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -22,7 +24,7 @@ db.once('open', () => {
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs',
-helpers:{
+helpers:Helpers/* {
   getIcon: function (a, b) {
     function isSameCategory(categoryDatabase) {
       return categoryDatabase.category === a
@@ -30,8 +32,17 @@ helpers:{
     const iconClass = b.find(isSameCategory).iconClass
     return iconClass
   }
-}
+} */
 }))
+
+Handlebars.registerHelper('getIcon', function (a, b) {
+  function isSameCategory(categoryDatabase) {
+      return categoryDatabase.category === a
+    }
+    const iconClass = b.find(isSameCategory).iconClass
+    return iconClass
+})
+
 app.set('view engine', 'hbs')
 app.use(methodOverride('_method'))
 
