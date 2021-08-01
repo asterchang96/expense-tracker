@@ -44,6 +44,7 @@ let categoryIncome = null
 let categoryExpense = null
 
 app.get('/', async (req, res) => {
+  getCategory()
   let totalAmount = 0
   const categories = await Category.find().lean()
   return Record.find()

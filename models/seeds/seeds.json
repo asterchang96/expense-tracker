@@ -4,42 +4,42 @@
       "name": "肯德基",
       "incomeOrExpenses": "支出",
       "category": "食",
-      "date": "2021/07/25",
+      "date": "2021-07-25",
       "amount": 500
     },
     {
       "name": "Netflix月費",
       "incomeOrExpenses": "支出",
       "category": "樂",
-      "date": "2021/07/25",
+      "date": "2021-07-25",
       "amount": 1250
     },
     {
       "name": "早餐",
       "incomeOrExpenses": "支出",
       "category": "食",
-      "date": "2021/07/24",
+      "date": "2021-07-24",
       "amount": 100
     },
     {
       "name": "發票中獎",
       "incomeOrExpenses": "收入",
       "category": "零用錢",
-      "date": "2021/07/24",
+      "date": "2021-07-24",
       "amount": 200
     },
     {
       "name": "ZARA",
       "incomeOrExpenses": "支出",
       "category": "衣",
-      "date": "2021/07/22",
+      "date": "2021-07-22",
       "amount": 2000
     },
     {
       "name": "6月薪資",
       "incomeOrExpenses": "收入",
       "category": "薪水",
-      "date": "2021/07/25",
+      "date": "2021-07-25",
       "amount": 45000
     }
   ],
