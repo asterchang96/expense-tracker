@@ -6,6 +6,8 @@ const PORT = 3000
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
+const helpers = require('handlebars-helpers')
+
 
 mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -19,7 +21,17 @@ db.once('open', () => {
 })
 
 app.use(bodyParser.urlencoded({ extended: true }))
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs'　}))
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs',
+helpers:{
+  getIcon: function (a, b) {
+    function isSameCategory(categoryDatabase) {
+      return categoryDatabase.category === a
+    }
+    const iconClass = b.find(isSameCategory).iconClass
+    return iconClass
+  }
+}
+}))
 app.set('view engine', 'hbs')
 app.use(methodOverride('_method'))
 
@@ -38,7 +50,6 @@ app.get('/', async (req, res) => {
     .lean()
     .sort({ date: 'asc' })
     .then((records) => {
-      
       records.forEach((record) => {
         // totalAmount by records amount total
         if(record.incomeOrExpenses === '收入') totalAmount += record.amount

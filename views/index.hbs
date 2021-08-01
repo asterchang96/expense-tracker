@@ -1,9 +1,8 @@
 <div id="selectCategory">
   <select name="chooseCategory" class="form-select" onchange="location = this.value;">
-    <option selected disabled>選擇類別</option>
     <option value="./">所有類別</option>
     {{#each categories}}
-      <option value="/search?chooseCategory={{ this.category }}">{{ this.category }}</option>
+      <option value="/search?chooseCategory={{ this.category }}" {{!-- {{isEqual this.category chooseCategory}} --}}selected>{{ this.category }}</option>
     {{/each}}
   </select>
 </div>
@@ -12,26 +11,25 @@
   <h3>總金額 : <span id="formatTotalAmount">{{ totalAmount }}</span></h3>
 </div>
 
-
-<div class="list-group list-group-flush" style="border: 1px;">
+<div class="list-group list-group-flush" style="border: 1px; padding:1rem;">
   {{#if records}}
   {{#each records}}
   <div class="row" id="showOneItem">
     <div id="showGroup" class="col-9 mt-1 mb-1">
       {{!-- icon --}}
       <div id="showIconIncomeOrExpenses"class="col-3" style="align-self: center">
-        <i id="categoryIcon"class="fas fa-question-circle fa-4x"></i>
-        <div id="showIncomeOrExpenses">{{this.incomeOrExpenses}}</div>
+        <i id="categoryIcon"class="{{getIcon this.category ../categories}} fa-3x" style="width:60px; height:60px;"></i>
+        <span class="badge rounded-pill bg-warning text-dark" id="showIncomeOrExpenses">{{this.incomeOrExpenses}}</span>
       </div>
 
       <div class="col-9" id="showNameCategoryDateAmount">
 
         <div id="showNameCategoryDate" class="col-8">
-          <div id="showNameCategory">{{this.category}} / {{this.name}}</div>
-          <div id="showDate">{{this.date}}</div>               
+          <span class="badge bg-light text-dark" id="showNameCategory">{{this.category}} / {{this.name}}</span>
+          <span class="badge bg-light  text-dark" id="showDate">{{this.date}}</span>               
         </div>
 
-        <div id="showAmount" class="col-4">
+        <div id="showAmount" class="col-4" style="text-align:center">
           <div class="list-group-item">{{this.amount}}</div>
         </div>
 
