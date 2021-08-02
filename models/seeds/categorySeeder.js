@@ -4,11 +4,14 @@ const Category = require('../category')
 const { categorySeeders } = require('./seeds.json')
 
 db.once('open', () => {
-  Category.create(categorySeeders)
-    .then(() => {
+  Category.create(
+    categorySeeders
+    ).then(() => {
       console.log("category done")
       return db.close()
     })
-    .catch(err => console.error(err))
+    .then(() => {
+      console.log("record database done")
+    })
 })
 
