@@ -18,7 +18,7 @@
     <div id="showGroup" class="col-9 mt-1 mb-1">
       {{!-- icon --}}
       <div id="showIconIncomeOrExpenses"class="col-3" style="align-self: center">
-        <i id="categoryIcon"class="{{getIcon this.category ../categories}} fa-3x" style="width:60px; height:60px;"></i>
+        <i id="categoryIcon"class="{{ this.iconClass }} fa-3x" style="width:60px; height:60px;"></i>
         <span id="showIncomeOrExpenses" class="badge rounded-pill bg-warning text-dark">{{this.incomeOrExpenses}}</span>
       </div>
 

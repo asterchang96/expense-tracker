@@ -20,7 +20,7 @@ function getCategory(){
     })
 }
 
-router.get('/new', async(req, res) => {
+router.get('/new', (req, res) => {
     getCategory()
     return res.render('new', { categoryIncome, categoryExpense } )
 })
@@ -28,14 +28,28 @@ router.get('/new', async(req, res) => {
 router.post('/', (req, res) => {
   // 可以連結、新增至mongoDB
   const { incomeOrExpenses, name, date, category, amount } = req.body
+  //new 可以新增類別 但沒有在資料庫的類別會顯示不通過 -->做一個前端表單驗證
+  //檢查 category 
+  console.log(category)
+  const categoryOptionTrueOrFalse = Category.findOne({"category": category})
+  .lean()
+  .then( category => console.log(category))
+  console.log(categoryOptionTrueOrFalse)
 
-  return Record.create({ incomeOrExpenses, name, date, category, amount })
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+  
+  if(!categoryOptionTrueOrFalse){
+    //沒有該選項 --> 失敗，傳回new，並顯示錯誤訊息
+    console.log('categoryOptionTrueOrFalse成功了')
+  }else if(categoryOptionTrueOrFalse === '薪水')
+  {//有該選項 --> 成功，傳回首頁
+    return Record.create({ incomeOrExpenses, name, date, category, amount })
+      .then(() => res.redirect('/'))
+      .catch(error => console.log(error))    
+  }
 })
 
 
-router.get('/:id/edit', async(req, res) => {
+router.get('/:id/edit', (req, res) => {
   getCategory()
   const id = req.params.id
   return Record.findById(id)

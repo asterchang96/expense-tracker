@@ -11,7 +11,6 @@ function getCategory(){
   Category.find()
     .lean()
     .then((categories) => {
-      console.log(categories)
       categoryIncome = categories.filter((element) => {
         if (element.incomeOrExpenses === '收入')  return element.category
 
@@ -21,8 +20,12 @@ function getCategory(){
       })
     })
 }
+function isSameCategory(categoryDatabase) {
+      return (categoryDatabase.category) === a
+}
 
-router.get('/', async (req, res) => {
+
+router.get('/', async(req, res) => {
   let totalAmount = 0
   const categories = await Category.find().lean()
   return Record.find()
@@ -32,6 +35,8 @@ router.get('/', async (req, res) => {
       records.forEach((record) => {
         if(record.incomeOrExpenses === '收入') totalAmount += record.amount
         else totalAmount -= record.amount
+        
+        record.iconClass = (categories.find(category => (category.category === record.category))).iconClass
       })
       res.render('index', { records, categories, totalAmount })
     })
