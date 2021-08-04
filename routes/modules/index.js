@@ -11,21 +11,15 @@ function getCategory(){
   Category.find()
     .lean()
     .then((categories) => {
-      categoryIncome = categories.filter((element) => {
-        if (element.incomeOrExpenses === '收入')  return element.category
-
-      })
-      categoryExpense = categories.filter((element) => {
-        if (element.incomeOrExpenses === '支出') return element.category
-      })
+      categoryIncome = categories.filter((e) => (e.incomeOrExpenses === '收入'))
+      categoryExpense = categories.filter((e) => (e.incomeOrExpenses === '支出'))
     })
 }
-function isSameCategory(categoryDatabase) {
-      return (categoryDatabase.category) === a
-}
+
 
 
 router.get('/', async(req, res) => {
+  getCategory()
   let totalAmount = 0
   const categories = await Category.find().lean()
   return Record.find()
@@ -39,9 +33,6 @@ router.get('/', async(req, res) => {
         record.iconClass = (categories.find(category => (category.category === record.category))).iconClass
       })
       res.render('index', { records, categories, totalAmount })
-    })
-    .catch((error) => {
-      console.log(error)
     })
 })
 
