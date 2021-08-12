@@ -18,7 +18,7 @@ router.get('/', async(req, res)=> {
         else totalAmount -= record.amount
         record.iconClass = (categories.find(category => (category.category === record.category))).iconClass
       })
-     res.render('index', { records, categories, totalAmount, chooseCategory })
+      res.render('index', { records, categories, totalAmount, chooseCategory })
     })    
 
 })
