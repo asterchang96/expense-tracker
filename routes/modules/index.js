@@ -6,6 +6,7 @@ const Record = require('../../models/record') // 載入 record model
 
 let categoryIncome = null
 let categoryExpense = null
+
 //區分收入/支出，對應category
 function getCategory(){
   Category.find()
