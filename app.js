@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
+const usePassport = require('./config/passport')
 const handlebarsHelpers  = require('handlebars-helpers')(['array', 'comparison'])
 
 
@@ -25,6 +26,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+
+usePassport(app)
 
 app.use(routes)
 
