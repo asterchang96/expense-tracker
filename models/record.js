@@ -24,5 +24,10 @@ const recordSchema = new Schema({
     required: true,
     trim: true
   },
+  merchant: {
+    type: String,
+    required: true,
+    trim: true
+  }
 })
 module.exports = mongoose.model('Record', recordSchema)
