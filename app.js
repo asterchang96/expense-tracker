@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
+const session = require('express-session')
 const handlebarsHelpers  = require('handlebars-helpers')(['array', 'comparison'])
 
 
@@ -19,6 +20,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
 
+app.use(session({
+  secret:'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.use(routes)
 
