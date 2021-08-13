@@ -13,6 +13,7 @@ router.get('/login',(req, res) => {
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/users/login'
+  //TODO 目前無輸入，不會有錯誤訊息
 }))
 
 //註冊

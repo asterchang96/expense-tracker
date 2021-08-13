@@ -7,7 +7,11 @@ const flash = require('connect-flash')
 const usePassport = require('./config/passport')
 const handlebarsHelpers  = require('handlebars-helpers')(['array', 'comparison'])
 
+if(process.env.NODE_ENV !== 'production'){
+  require('dotenv').config()
+}
 
+const PORT = process.env.PORT
 const routes = require('./routes/main')
 require('./config/mongoose')
 
@@ -22,10 +26,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
 
-app.use(session({
-  secret:'ThisIsMySecret',
-  resave: false,
-  saveUninitialized: true
+app.use(session({ 
+  secret: process.env.SESSION_SECRET,
+  resave:false,
+  saveUninitialized:true
 }))
 
 usePassport(app)
@@ -36,16 +40,12 @@ app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.success_msg = req.flash('success_msg')
   res.locals.warning_msg = req.flash('warning_msg')
-  res.locals.error = req.flash('error')
-
-
+  res.locals.error_msg = req.flash('error_msg')
   next()
 })
 
 app.use(routes)
 
-  
-const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`)
 })
