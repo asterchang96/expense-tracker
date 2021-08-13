@@ -2,8 +2,10 @@ const mongoose = require('mongoose')
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/expense-tracker'
 
-mongoose.connect( MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect( MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, createIndexes:true })
+
 const db = mongoose.connection
+
 // 連線異常
 db.on('error', () => {
   console.log('mongodb error!')

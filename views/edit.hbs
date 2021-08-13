@@ -44,6 +44,13 @@
       <input type="number" class="form-control" name="amount" id="amount" {{#if categoryError}}value={{ amount }}{{else}}value={{record.amount}}{{/if}} required>
       <div class="invalid-feedback">必填欄位</div>
     </div>
+
+    <div class="form-group col-12">
+      <label for="merchant">商家</label>
+      <input type="text" class="form-control" name="merchant" id="merchant" {{#if categoryError}}value={{ merchant }}{{else}}value={{record.amount}}{{/if}} required>
+      <div class="invalid-feedback">必填欄位</div>
+    </div>
+
   <div style="text-align: center; margin-top:1rem;">
     <button id="submit" class="btn btn-warning">儲存</button>
     <a href="/" class="btn btn-warning">返回</a>

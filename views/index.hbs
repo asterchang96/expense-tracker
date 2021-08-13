@@ -1,4 +1,3 @@
-<a class="btn btn-secondary my-2 my-sm-0" href="/records/new">新增一筆</a>
 <div id="selectCategory">
   <select name="chooseCategory" class="form-select" onchange="location = this.value;">
     <option value="./">所有類別</option>
@@ -43,10 +42,14 @@
         <button class="btn btn-danger" type="submit">刪除</button>
       </form>
     </div>
-
+    
   </div>
   {{/each}}
   {{else}}
     <div style="text-align: center"><p style="display:inline">目前沒有資料，新增一筆吧... </p><i class="fas fa-pen"></i></div>
   {{/if}}
+  <div class=" text-center mt-5">
+    <a class="btn btn-warning btn-lg my-2 my-sm-0" href="/records/new">新增一筆</a>
+  </div>
+  
 </div>

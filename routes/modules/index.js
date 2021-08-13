@@ -23,7 +23,8 @@ router.get('/', async(req, res) => {
   getCategory()
   let totalAmount = 0
   const categories = await Category.find().lean()
-  return Record.find()
+  const userId = req.user._id
+  return Record.find({ userId })
     .lean()
     .sort({ date: 'desc' })
     .then((records) => {

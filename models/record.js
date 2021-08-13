@@ -28,6 +28,12 @@ const recordSchema = new Schema({
     type: String,
     required: true,
     trim: true
+  },
+  userId:{ //加入關聯設定
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true,
   }
 })
 module.exports = mongoose.model('Record', recordSchema)
