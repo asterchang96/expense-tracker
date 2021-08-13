@@ -1,0 +1,53 @@
+
+{{#if success_msg}}
+<div class="mt-1 alert alert-success alert-dismissible fade show" role="alert">
+  <div class="row flashMessageShowGrid">
+    <div class="col-1" style="margin-right: 0.5rem;">
+      <i class="fas fa-check-circle fa-lg"></i>
+    </div>
+    <div class="col-11">
+      <strong class="alert-heading mt-5">Success</strong>
+      <div>{{{success_msg}}}</div>
+    </div>
+  </div>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
+
+{{#if warning_msg}}
+<div class="mt-1 alert alert-warning alert-dismissible fade show flashMessageShowOpacity" role="alert">
+  <div class="row flashMessageShowGrid">
+    <div class="col-1" style="margin-right: 0.5rem;">
+      <i class="fas fa-exclamation-circle fa-lg"></i>
+    </div>
+    <div class="col-11">
+      <strong class="alert-heading mt-5">Warning</strong>
+      <div>{{{warning_msg}}}</div>
+    </div>
+  </div>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
+
+{{#if errors}}
+  {{#each errors}}
+  <div class="mt-1 alert alert-danger alert-dismissible fade show flashMessageShowOpacity" role="alert">
+    <div class="row flashMessageShowGrid">
+      <div class="col-1" style="margin-right: 0.5rem;">
+        <i class="fas fa-exclamation-circle fa-lg"></i>
+      </div>
+      <div class="col-11">
+        <strong class="alert-heading mt-5">Error</strong>
+        <div>{{{this.message}}}</div>
+      </div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {{/each}}
+{{/if}}

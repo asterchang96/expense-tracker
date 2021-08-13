@@ -26,3 +26,13 @@ footer {
 .category-invalid-feedback{
   color: red;
 }
+
+.flashMessageShowGrid{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center
+}
+
+.flashMessageShowOpacity{
+  opacity: 0.9;
+}

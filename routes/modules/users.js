@@ -21,45 +21,53 @@ router.get('/register',(req, res) => {
 
 router.post('/register',(req, res) => {
   const { name, email, password, confirmPassword } = req.body
-  console.log(name, email, password, confirmPassword)
+  const errors = []
   //檢查是否已註冊
+  //(無)
+  if(!name || !email || !password || !confirmPassword){
+    errors.push({ message: '所有欄位都是必填！'})
+  }
+  //(密碼與確認密碼不相符！)
+  if( password !== confirmPassword){
+    errors.push({ message: '密碼與確認密碼不相符！'})
+  }
+
+  if(errors.length){
+    return res.render('register',{
+      errors,
+      name,
+      email,
+      password,
+      confirmPassword
+    })
+  }
+
+  //(有)
   User.findOne({ email })
     .then(user => {
       //已經註冊
       if(user){
-        // TODO should add alert when user is in database
-        console.log(email," 此用戶已註冊！")
+        errors.push({ message: '此用戶已註冊！'})
         return res.render('register',{
           name,
           email,
           password,
           confirmPassword
         })
-      }else{
-        if(password !== confirmPassword){
-          console.log(email," 此用戶密碼與驗證密碼不相符！")
-          // TODO should add alert when password != confirmPassword
-          return res.render('register',{
-            name,
-            email,
-            password
-          })
-        }
-
-        // TODO password bcrypt salt
-        return User.create({
-          name,
-          email,
-          password
-        })
-        .then(() => res.redirect('/'))
-        .catch(err => console.log(err))    
       }
+      return User.create({
+        name,
+        email,
+        password
+      })
+      .then(() => res.redirect('/'))
+      .catch(err => console.log(err))    
     })
 })
 
 router.get('/logout', (req, res) => {
   req.logout()
+  req.flash('success_msg', '你已經成功登出。')
   res.redirect('/users/login')
 })
 
