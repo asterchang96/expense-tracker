@@ -1,46 +1,52 @@
 {
   "recordSeeders": [
     {
-      "name": "肯德基",
+      "name": "花生熔岩起司牛肉堡",
       "incomeOrExpenses": "支出",
       "category": "食",
       "date": "2021-07-25",
-      "amount": 500
+      "amount": 500,
+      "merchant": "肯德基"
     },
     {
       "name": "Netflix月費",
       "incomeOrExpenses": "支出",
       "category": "樂",
       "date": "2021-07-25",
-      "amount": 1250
+      "amount": 1250,
+      "merchant": "Netflix"
     },
     {
       "name": "早餐",
       "incomeOrExpenses": "支出",
       "category": "食",
       "date": "2021-07-24",
-      "amount": 100
+      "amount": 100,
+      "merchant": "美而美"
     },
     {
       "name": "發票中獎",
       "incomeOrExpenses": "收入",
       "category": "零用錢",
       "date": "2021-07-24",
-      "amount": 200
+      "amount": 200,
+      "merchant": "全聯"
     },
     {
-      "name": "ZARA",
+      "name": "駝色大衣",
       "incomeOrExpenses": "支出",
       "category": "衣",
       "date": "2021-07-22",
-      "amount": 2000
+      "amount": 2000,
+      "merchant": "ZARA"
     },
     {
       "name": "6月薪資",
       "incomeOrExpenses": "收入",
       "category": "薪水",
       "date": "2021-07-25",
-      "amount": 45000
+      "amount": 45000,
+      "merchant": "MYCompany"
     }
   ],
   "categorySeeders":[

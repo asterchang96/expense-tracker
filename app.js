@@ -4,18 +4,21 @@ const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
-const usePassport = require('./config/passport')
-const handlebarsHelpers  = require('handlebars-helpers')(['array', 'comparison'])
 
-if(process.env.NODE_ENV !== 'production'){
+if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
-const PORT = process.env.PORT
 const routes = require('./routes/main')
+
+const usePassport = require('./config/passport')
 require('./config/mongoose')
 
+const handlebarsHelpers  = require('handlebars-helpers')(['array', 'comparison'])
+
+
 const app = express()
+const PORT = process.env.PORT
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers:handlebarsHelpers }))
 app.set('view engine', 'hbs')
