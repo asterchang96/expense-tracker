@@ -10,18 +10,16 @@
       {{/each}}
       </select>
     </div>
-
     <div class="date col-6" style="display:flex">
-      <input type="date" class="form-select" style="width:auto" id="dateStart" name="dateStart" value="{{#if dateStart}}{{ dateStart }}{{/if}}" {{#if dateEnd}}required{{/if}}>
+      <input type="date" class="form-select" style="width:auto" id="dateStart" name="dateStart" value="{{#if dateStart}}{{ dateStart }}{{/if}}">
       <i class="far fa-window-minimize" style="padding:5px"> </i>
-      <input type="date" class="form-select" style="width:auto" id="dateEnd" name="dateEnd" value="{{#if dateEnd}}{{ dateEnd }}{{/if}}" {{#if dateStart}}required{{/if}}>
+      <input type="date" class="form-select" style="width:auto" id="dateEnd" name="dateEnd" value="{{#if dateEnd}}{{ dateEnd }}{{/if}}">
     </div>
 
     <div class="form-group col-2">
       <button class="btn btn-warning" type="submit">搜尋</button>
       <a class="btn btn-danger" href="./">清除</a>
     </div>
-    
 
   </div>
 </form>  
