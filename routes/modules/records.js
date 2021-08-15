@@ -19,7 +19,8 @@ function getCategory(){
 
 router.get('/new', (req, res) => {
     getCategory()
-    return res.render('new', { categoryIncome, categoryExpense } )
+    return res.render('new', { categoryIncome, categoryExpense })
+    
 })
 
 router.post('/', (req, res) => {

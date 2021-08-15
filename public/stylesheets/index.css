@@ -1,9 +1,9 @@
-#selectCategory{
+/* #selectCategory{
   display: flex;
   margin-bottom: 1rem;
   width: 95%;
   align-self: center;
-}
+} */
 
 #showTotalAmount{
   display: flex;

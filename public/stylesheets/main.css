@@ -16,12 +16,10 @@ footer {
 }
 
 #formNewEditPage{
-  width: 50%;
   margin: 0px auto;
-  padding:2rem;
+  /* padding:2rem; */
   background-color: #eee;
   border-radius: 10px;
-
 }
 .category-invalid-feedback{
   color: red;

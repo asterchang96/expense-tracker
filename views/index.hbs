@@ -1,55 +1,76 @@
-<div id="selectCategory">
-  <select name="chooseCategory" class="form-select" onchange="location = this.value;">
-    <option value="./">所有類別</option>
-    {{#each categories}}
-      <option value="/search?chooseCategory={{ this.category }}" {{#is this.category ../chooseCategory}}selected{{/is}}>{{ this.category }}</option>
-    {{/each}}
-  </select>
-</div>
-
-<div id="showTotalAmount">
-  <h3>總金額 : <span id="formatTotalAmount" style="color: orange;">{{ totalAmount }}</span></h3>
-</div>
-
-<div class="list-group" style="border: 1px; padding:1rem;">
-  {{#if records}}
-  {{#each records}}
-  <div class="row" id="showOneItem">
-    <div id="showGroup" class="col-9 mt-1 mb-1">
-      {{!-- icon --}}
-      <div id="showIconIncomeOrExpenses"class="col-3" style="align-self: center">
-        <i id="categoryIcon"class="{{ this.iconClass }} fa-3x" style="width:60px; height:60px;"></i>
-        <span id="showIncomeOrExpenses" class="badge rounded-pill bg-warning text-dark">{{this.incomeOrExpenses}}</span>
-      </div>
-
-      <div class="col-9" id="showNameCategoryDateAmount">
-
-        <div id="showNameCategoryDate" class="col-8">
-          <span class="badge bg-light text-dark" id="showNameCategory">{{this.category}} / {{this.name}}</span>
-          <span class="badge bg-light text-dark" id="showDate">{{this.date}}</span>               
-        </div>
-
-        <div id="showAmount" class="col-4" style="text-align:center">
-          <div class="list-group-item">{{this.amount}}</div>
-        </div>
-
-      </div>
+<div class="mt-4">
+  {{!-- 選單 --}}
+<form action="./search?category={{ this.category }}&dateStart={{ dateStart }}&dateEnd={{ dateEnd }}" method="get" style="display:inline">
+  <div class="row bg-light"style="padding:1rem">
+    <div id="selectCategory" class="form-group col-3">
+      <select name="chooseCategory" class="form-select">
+      <option value="all" selected>所有類別</option>
+      {{#each categories}}
+        <option value="{{ this.category }}" {{#is this.category ../chooseCategory}}selected{{/is}}>{{ this.category }}</option>
+      {{/each}}
+      </select>
     </div>
 
-    <div class="col-3" style="align-self: center">
-      <a class="btn btn-secondary" href='/records/{{ this._id }}/edit'>編輯</a>
-      <form action="./records/{{ this._id }}?_method=DELETE" method="post" style="display:inline">
-        <button class="btn btn-danger" type="submit">刪除</button>
-      </form>
+    <div class="date col-6" style="display:flex">
+      <input type="date" class="form-select" style="width:auto" id="dateStart" name="dateStart" value="{{#if dateStart}}{{ dateStart }}{{/if}}" {{#if dateEnd}}required{{/if}}>
+      <i class="far fa-window-minimize" style="padding:5px"> </i>
+      <input type="date" class="form-select" style="width:auto" id="dateEnd" name="dateEnd" value="{{#if dateEnd}}{{ dateEnd }}{{/if}}" {{#if dateStart}}required{{/if}}>
+    </div>
+
+    <div class="form-group col-2">
+      <button class="btn btn-warning" type="submit">搜尋</button>
+      <a class="btn btn-danger" href="./">清除</a>
+    </div>
+    
+
+  </div>
+</form>  
+
+  <div id="showTotalAmount" class="mt-1">
+    <h3>總金額 : <span id="formatTotalAmount" style="color: orange;">{{ totalAmount }}</span></h3>
+  </div>
+
+  <div class="list-group" style="border: 1px; padding:1rem;">
+    {{#if records}}
+    {{#each records}}
+    <div class="row" id="showOneItem">
+      <div id="showGroup" class="col-9 mt-1 mb-1">
+        {{!-- icon --}}
+        <div id="showIconIncomeOrExpenses"class="col-3" style="align-self: center">
+          <i id="categoryIcon"class="{{ this.iconClass }} fa-3x" style="width:60px; height:60px;"></i>
+          <span id="showIncomeOrExpenses" class="badge rounded-pill bg-warning text-dark">{{this.incomeOrExpenses}}</span>
+        </div>
+
+        <div class="col-9" id="showNameCategoryDateAmount">
+
+          <div id="showNameCategoryDate" class="col-8">
+            <span class="badge bg-light text-dark" id="showNameCategory">{{this.category}} / {{this.name}}</span>
+            <span class="badge bg-light text-dark" id="showDate">{{this.date}}</span>               
+          </div>
+
+          <div id="showAmount" class="col-4" style="text-align:center">
+            <div class="list-group-item">{{this.amount}}</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-3" style="align-self: center">
+        <a class="btn btn-secondary" href='/records/{{ this._id }}/edit'>編輯</a>
+        <form action="./records/{{ this._id }}?_method=DELETE" method="post" style="display:inline">
+          <button class="btn btn-danger" type="submit">刪除</button>
+        </form>
+      </div>
+      
+    </div>
+    {{/each}}
+    {{else}}
+      <div style="text-align: center"><p style="display:inline">目前沒有資料，新增一筆吧... </p><i class="fas fa-pen"></i></div>
+    {{/if}}
+    <div class=" text-center mt-5">
+      <a class="btn btn-warning btn-lg my-2 my-sm-0" href="/records/new">新增一筆</a>
     </div>
     
   </div>
-  {{/each}}
-  {{else}}
-    <div style="text-align: center"><p style="display:inline">目前沒有資料，新增一筆吧... </p><i class="fas fa-pen"></i></div>
-  {{/if}}
-  <div class=" text-center mt-5">
-    <a class="btn btn-warning btn-lg my-2 my-sm-0" href="/records/new">新增一筆</a>
-  </div>
-  
+
 </div>
