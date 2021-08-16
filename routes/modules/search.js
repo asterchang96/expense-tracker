@@ -3,7 +3,7 @@ const router = express.Router()
 
 const Category = require('../../models/category') // 載入 category model
 const Record = require('../../models/record') // 載入 record model
-
+const { getIconClass } = require('../../public/javascripts/functionTools')
 
 router.get('/', async(req, res)=> {
   const categories = await Category.find().sort({ date: 'desc' }).lean()
@@ -33,7 +33,7 @@ router.get('/', async(req, res)=> {
           records.forEach((record) => {
             if(record.incomeOrExpenses === '收入') totalAmount += record.amount
             else totalAmount -= record.amount
-            record.iconClass = (categories.find(category => (category.category === record.category))).iconClass
+            record.iconClass = getIconClass(record.category, categories)
           })
           res.render('index', { records, categories, totalAmount, chooseCategory, dateStart, dateEnd })
         })  

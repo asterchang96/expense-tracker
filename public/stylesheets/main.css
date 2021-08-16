@@ -17,9 +17,10 @@ footer {
 
 #formNewEditPage{
   margin: 0px auto;
-  /* padding:2rem; */
+  padding:2rem;
   background-color: #eee;
   border-radius: 10px;
+  max-width: 500px;
 }
 .category-invalid-feedback{
   color: red;
@@ -33,4 +34,101 @@ footer {
 
 .flashMessageShowOpacity{
   opacity: 0.9;
+}
+
+/* index */
+
+#indexPage{
+  max-width: 900px;
+  margin: 0px auto;
+}
+
+/* #selectCategory{
+  display: flex;
+  margin-bottom: 1rem;
+  width: 95%;
+  align-self: center;
+} */
+
+#showTotalAmount{
+  display: flex;
+  width: 95%;
+}
+
+#formatTotalAmount{
+  font-size: 200%;
+  vertical-align:text-top;
+}
+
+#showOneItem{
+  border-bottom: 1px solid #dddfe2;
+}
+
+.list-group-item{
+  border: 0px;
+}
+
+#categoryIcon{
+  display: flex;
+  align-items: center;
+
+}
+
+#showGroup{
+  display: flex;
+  flex-flow: row;
+}
+
+#showIconIncomeOrExpenses{
+  display: flex;
+  flex-flow: row;
+  align-self: center;
+}
+
+#showIncomeOrExpenses{
+  align-self:flex-end;
+  font-size:small;
+}
+
+#showNameCategoryDateAmount{
+  display: flex;
+  flex-flow: row;
+  align-self: center;
+}
+
+#showNameCategory{
+  font-size: large;
+}
+#showDate{
+  font-size:small;
+}
+#showAmount{
+  align-self: center;
+  font-size: x-large;
+}
+
+#showNameCategoryDate{
+  display: flex;
+  flex-flow: column;
+  align-self: center
+
+}
+
+/* new */
+
+.expensesButton{
+border-top-left-radius:0;
+border-bottom-left-radius:0;
+}
+.incomeButton{
+border-top-right-radius:0;
+border-bottom-right-radius:0;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }

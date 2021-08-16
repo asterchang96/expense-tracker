@@ -1,53 +1,37 @@
-<div class="form-row mb-3" id="formNewEditPage">
-  <form action="/records/{{#if categoryError}}{{ id }}{{else}}{{record._id}}{{/if}}?_method=PUT" method="POST" class="needs-validation" novalidate>
-
-    <div class="mb-3" style="text-align: center">
-      
-      <input type="radio" class="btn btn-outline-secondary btn-check" id="incomeButton" name="incomeOrExpenses"
-        value="收入" {{#unless categoryError}}{{#is record.incomeOrExpenses '收入'}}checked="checked"{{/is}}{{/unless}}><label class="btn btn-outline-secondary incomeButton" for="incomeButton">收入</label>
-      <input type="radio" class="btn btn-outline-secondary btn-check" id="expensesButton" name="incomeOrExpenses"
-        value="支出" {{#unless categoryError}}{{#is record.incomeOrExpenses '支出'}}checked="checked"{{/is}}{{/unless}}><label class="btn btn-outline-secondary expensesButton" for="expensesButton" style="margin-left: -.25rem;">支出</label>
-    </div>
+<div class="form-row mt-5" id="formNewEditPage">
+  <form action="/records/{{#if categoryError}}{{ id }}{{else}}{{ record._id }}{{/if}}?_method=PUT" method="POST" class="needs-validation" novalidate>
 
     <div class="form-group col-12">
       <label for="name">名稱</label>
-      <input type="text" class="form-control" name="name" id="name" {{#if categoryError}}value={{ name }}{{else}}value={{record.name}}{{/if}} required>
+      <input type="text" class="form-control" name="name" id="name" {{#if categoryError}}value="{{ name }}"{{else}}value="{{record.name}}"{{/if}} required>
       <div class="invalid-feedback">必填欄位</div>
     </div>
 
     <div class="form-group col-12">
       <label for="date">日期</label>
-      <input type="date" class="form-control" id="date" name="date" {{#if categoryError}}value={{ date }}{{else}}value={{record.date}}{{/if}} required>
+      <input type="date" class="form-control" id="date" name="date" {{#if categoryError}}value="{{ date }}"{{else}}value="{{record.date}}"{{/if}} required>
     </div>
 
-    <div class="form-group col-12">
+
+    <div class="form-group col-12 mt-3">
       <label for="category">類別</label>
-      {{!-- 選擇收入/支出來變換list --}}
-      <input class="form-control" name="category" id="buttonCategoryIncomeOrExpenses" {{#unless categoryError}}value={{record.category}}{{/unless}} required>
-      <datalist id=buttonIncome>
-        {{#each categoryIncome}}
-        <option>{{ this.category }}</option>
+      <select class="selectIncome form-select" name="category">
+        {{#each categories}}
+        <option value="{{ record.category }}">{{ this.category }}</option>
         {{/each}}
-      </datalist>
-      <datalist id=buttonExpenses>
-        {{#each categoryExpense}}
-        <option>{{ this.category }}</option>
-        {{/each}}
-      </datalist>
-      <div class="invalid-feedback">必填欄位</div>
-      {{#if categoryError}}<div class="category-invalid-feedback">{{ category }}非{{ incomeOrExpenses }}選項，請重新選擇!</div>{{/if}}
-
+      </select>
     </div>
+
 
     <div class="form-group col-12">
       <label for="amount">金額</label>
-      <input type="number" class="form-control" name="amount" id="amount" {{#if categoryError}}value={{ amount }}{{else}}value={{record.amount}}{{/if}} required>
+      <input type="number" class="form-control" name="amount" id="amount" {{#if categoryError}}value="{{ amount }}"{{else}}value="{{record.amount}}"{{/if}} required>
       <div class="invalid-feedback">必填欄位</div>
     </div>
 
     <div class="form-group col-12">
       <label for="merchant">商家</label>
-      <input type="text" class="form-control" name="merchant" id="merchant" {{#if categoryError}}value={{ merchant }}{{else}}value={{record.amount}}{{/if}} required>
+      <input type="text" class="form-control" name="merchant" id="merchant" {{#if categoryError}}value="{{ merchant }}"{{else}}value="{{record.amount}}"{{/if}} required>
       <div class="invalid-feedback">必填欄位</div>
     </div>
 
@@ -59,21 +43,10 @@
 </div>
 
 
- 
-
 <script>
-  const incomeButton = document.querySelector('#incomeButton')
-  const expensesButton = document.querySelector('#expensesButton')
   const submitButton = document.querySelector('#submit')
   const form = document.querySelector('form')
 
-  incomeButton.addEventListener('click', function onIncomeButtonClicked(event) {
-    document.getElementById('buttonCategoryIncomeOrExpenses').setAttribute('list', 'buttonIncome')
-  })
-
-  expensesButton.addEventListener('click', function onExpensesButtonClicked(event) {
-    document.getElementById('buttonCategoryIncomeOrExpenses').setAttribute('list', 'buttonExpenses')
-  })
 
   submitButton.addEventListener('click', function onSubmitButtonClicked(event) {
     form.classList.add('was-validated')
