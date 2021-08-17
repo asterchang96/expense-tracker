@@ -56,7 +56,7 @@ npm run seed
 
 5. 將 .env.example 修改為 .env
 
-如果想嘗試第三方登入，需要先在 [Facebook for Developers](https://developers.facebook.com/?no_redirect=1) 中建立應用程式，將應用程式編號和密鑰填入 .env，即可使用 facebook login 功能。
+  如果想嘗試第三方登入，需要先在 [Facebook for Developers](https://developers.facebook.com/?no_redirect=1) 中建立應用程式，將應用程式編號和密鑰填入 .env，即可使用 facebook login 功能。
 
 6. 啟動專案
 
@@ -76,7 +76,7 @@ Express is listening on localhost: 3000.
 
 ## 成果截圖
 
-![登入註冊頁](./user-login.png)
+![登入註冊頁](./users-login.png)
 ![主頁](./homePage.png)
 
 ## 開發者
