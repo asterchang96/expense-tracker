@@ -25,7 +25,11 @@ const PORT = process.env.PORT
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers:handlebarsHelpers }))
 app.set('view engine', 'hbs')
 
-
+const hbs = exphbs.create({ defaultLayout: 'main', extname: '.hbs' })
+hbs.handlebars.registerHelper('ifEqual', function (a, b, options) {
+    if (a == b) return options.fn(this)
+    return options.inverse(this);
+})
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))

@@ -1,37 +1,37 @@
 
 <div class="form-row mt-5" id="formNewEditPage">
   <form action="/records" method="POST" class="needs-validation" novalidate>
-
+    {{>formMessages}}
     <div class="form-group col-12">
-      <label for="name">名稱</label>
-      <input type="text" class="form-control" name="name" id="name" value="{{ name }}" required>
+      <label for="name">名稱*</label>
+      <input type="text" class="form-control" name="name" id="name" value="{{ name }}" placeholder="字數10字以內" required>
       <div class="invalid-feedback">必填欄位</div>
     </div>
 
     <div class="form-group col-12 mt-3">
-      <label for="date">日期</label>
-      <input type="date" class="form-control" id="date" name="date" value="{{ date }}">
+      <label for="date">日期*</label>
+      <input type="date" class="form-control" id="date" name="date" value="{{ date }}" required>
     </div>
 
     <div class="form-group col-12 mt-3">
-      <label for="category">類別</label>
-      <select class="selectIncome form-select" name="category">
-        <option disabled selected>請選擇類別</option>
+      <label for="category">類別*</label>
+      <select class="selectIncome form-select" name="category" required>
+        {{!-- <option disabled selected>請選擇類別</option> --}}
         {{#each categories}}
-        <option>{{ this.category }}</option>
+        <option value= {{category}}>{{ this.category }}</option>
         {{/each}}
       </select>
     </div>
 
     <div class="form-group col-12 mt-3">
-      <label for="amount">金額</label>
+      <label for="amount">金額*</label>
       <input type="number" class="form-control" name="amount" id="amount" value="{{ amount }}" required>
       <div class="invalid-feedback">必填欄位</div>
     </div>
 
     <div class="form-group col-12 mt-3">
       <label for="merchant">商家/公司</label>
-      <input type="text" class="form-control" name="merchant" id="merchant" value="{{ merchant }}" required>
+      <input type="text" class="form-control" name="merchant" id="merchant" value="{{ merchant }}">
       <div class="invalid-feedback">必填欄位</div>
     </div>
     
@@ -44,7 +44,6 @@
 
 
 <script>
-
   const submitButton = document.querySelector('#submit')
   const form = document.querySelector('form')
 
@@ -58,4 +57,5 @@
       event.stopPropagation()
     }
   })
+
 </script>

@@ -26,7 +26,6 @@ const recordSchema = new Schema({
   },
   merchant: {
     type: String,
-    required: true,
     trim: true
   },
   userId:{ //加入關聯設定
