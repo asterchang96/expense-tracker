@@ -16,7 +16,6 @@ router.get('/', async(req, res)=> {
   //TODO 判斷合理性
   // 不可以dataStart大於dateEnd
   if(dateEnd < dateStart) formErrors.push({ message: '結束時間不可以小於起始時間，請重新輸入或點選刪除！' })
-  // 如果僅輸入一項時間 dateStart:該時間以後 dateEnd:該時間以前
   if (formErrors.length) return res.render('index', { categories,formErrors })
 
   //建立過濾器

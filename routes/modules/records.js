@@ -41,7 +41,6 @@ router.get('/:id/edit', (req, res) => {
     .then(results => {
       categories = results[0]
       const record  = results[1]
-      console.log(results, categories, record)
       res.render('edit', { record, categories })
     })
     .catch(error => console.log(error))
@@ -72,7 +71,6 @@ router.put('/:id', (req, res) => {
       record.amount = amount
       record.merchant = merchant
       record.save()
-      console.log(record)
     })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error)) 
