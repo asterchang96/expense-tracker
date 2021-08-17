@@ -1,14 +1,16 @@
 # expense-tracker
 
-這是一個 Node.js + Express 打造的記帳簿
+這是一個 Node.js + Express 打造的記帳簿，你可以在[這裡](https://shrouded-basin-53328.herokuapp.com/)看到
 
 
 ## 產品功能
 
-- 首頁可以看到所有收入/支出項目與它們的簡單資料
-- 點選選擇列進行"不同類別"搜尋
-- 可以新增收入/支出資料
-- 可以重新編輯收入/支出資料
+使用者可以註冊帳號並登入，使用自己的支出記帳，系統提供以下功能：
+  - 首頁可以看到所有收入/支出項目與它們的簡單資料
+  - 點選選擇列進行"不同類別"、"時段"搜尋
+  - 可以新增收入/支出資料
+  - 可以重新編輯收入/支出資料
+  - 可以刪除收入/支出資料
 
 ## 環境建置與需求
 
@@ -21,6 +23,10 @@
 - [handlebars-helpers](https://www.npmjs.com/package/handlebars-helpers)
 - [handlebars](https://www.npmjs.com/package/handlebars)
 - [method-override](https://www.npmjs.com/search?q=method-override)
+- [passport](https://www.npmjs.com/package/passport)
+- [passport-facebook](https://www.npmjs.com/package/passport-facebook)
+- [express-session](https://www.npmjs.com/package/express-session)
+- [dotenv](https://www.npmjs.com/package/dotenv)
 
 ## 安裝流程
 
@@ -48,6 +54,10 @@ npm install
 npm run seed
 ```
 
+5. 將 .env.example 修改為 .env
+
+  如果想嘗試第三方登入，需要先在 [Facebook for Developers](https://developers.facebook.com/?no_redirect=1) 中建立應用程式，將應用程式編號和密鑰填入 .env，即可使用 facebook login 功能。
+
 6. 啟動專案
 
 ```
@@ -62,10 +72,12 @@ Express is listening on localhost: 3000.
 
 請至 [http://localhost:3000](http://localhost:3000)
 
+
+
 ## 成果截圖
 
-![首頁](./homePage.png)
-
+![登入註冊頁](./users-login.png)
+![主頁](./homePage.png)
 
 ## 開發者
 
