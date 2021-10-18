@@ -11,12 +11,12 @@
       </select>
     </div>
     <div class="date col-6" style="display:flex">
-      <input type="date" class="form-select" style="width:auto" id="dateStart" name="dateStart" value="{{#if dateStart}}{{ dateStart }}{{/if}}">
+      <input type="date" class="form-select" id="dateStart" name="dateStart" value="{{#if dateStart}}{{ dateStart }}{{/if}}">
       <i class="far fa-window-minimize" style="padding:5px"> </i>
-      <input type="date" class="form-select" style="width:auto" id="dateEnd" name="dateEnd" value="{{#if dateEnd}}{{ dateEnd }}{{/if}}">
+      <input type="date" class="form-select" id="dateEnd" name="dateEnd" value="{{#if dateEnd}}{{ dateEnd }}{{/if}}">
     </div>
 
-    <div class="form-group col-2">
+    <div class="form-group col-3">
       <button class="btn btn-warning" type="submit">搜尋</button>
       <a class="btn btn-danger" href="./">清除</a>
     </div>
@@ -28,7 +28,7 @@
     <h3>總金額 : <span id="formatTotalAmount" style="color: orange;">{{ totalAmount }}</span></h3>
   </div>
 
-  <div class="list-group" style="border: 1px; padding:1rem;">
+  <div class="list-group list-group-flush" id="list-group-show" style="border: 1px; padding:1rem;">
     {{#if records}}
     {{#each records}}
     <div class="row" id="showOneItem">

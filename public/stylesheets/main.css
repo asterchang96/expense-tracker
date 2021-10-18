@@ -38,18 +38,6 @@ footer {
 
 /* index */
 
-#indexPage{
-  max-width: 900px;
-  margin: 0px auto;
-}
-
-/* #selectCategory{
-  display: flex;
-  margin-bottom: 1rem;
-  width: 95%;
-  align-self: center;
-} */
-
 #showTotalAmount{
   display: flex;
   width: 95%;
@@ -112,6 +100,28 @@ footer {
   flex-flow: column;
   align-self: center
 
+}
+
+#dateEnd, #dateStart{
+  width:auto;
+  height:fit-content
+}
+
+#list-group-show {
+  width: 100%;
+}
+
+@media(max-width: 768px) {
+  #indexPage{
+    max-width: 100%;
+    margin: 0px auto;
+  }
+}
+@media(min-width: 768px) {
+  #indexPage{
+    max-width: 768px;
+    margin: 0px auto;
+  }
 }
 
 /* new */
