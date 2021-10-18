@@ -6,19 +6,22 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <link rel="stylesheet" href="/stylesheets/main.css">
-  <title>老爸的私房錢</title>
+  <title>我的記帳本</title>
 </head>
 
 <body>
   <nav class="navbar navbar-light bg-light " style="justify-content:space-between">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
-      <span class="navbar-brand mb-0 h1">{{#if isAuthenticated}}{{ user.name }}'s {{else}}老爸{{/if}}的私房錢</span>
-    </a>
+        <span class="navbar-brand mb-0 h1">{{#if isAuthenticated}}{{ user.name }}'s {{else}}我{{/if}}的記帳本</span>
+      </a>
     {{#if isAuthenticated}}
-    <a href="/users/logout" class="btn btn-warning">Logout</a>
+    <div class="nav-group" id="actionLogoutNew">
+    <a href="/records/new"><button class="btn btn-outline-warning my-2 my-sm-0">新增</button></a>
+    <a href="/users/logout"><button class="btn btn-outline-secondary my-2 my-sm-0">LogOut</button></a>
+    </div>
     {{else}}
-    <a href="/users/login" class="btn btn-warning">Login</a>
+    <a href="/users/login"><button class="btn btn-outline-secondary my-2 my-sm-0">Login</button></a>
     {{/if}}
     </div>
     

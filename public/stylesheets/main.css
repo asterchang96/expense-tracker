@@ -111,6 +111,11 @@ footer {
   width: 100%;
 }
 
+#actionLogoutNew{
+  flex-flow:row;
+  
+}
+
 @media(max-width: 768px) {
   #indexPage{
     max-width: 100%;

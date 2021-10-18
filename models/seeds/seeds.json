@@ -58,7 +58,7 @@
     {
       "category": "衣",
       "incomeOrExpenses": "支出",
-      "iconClass": "fas fa-tshirt"
+      "iconClass": "fad fa-tshirt"
     },
     {
       "category": "住",
@@ -83,12 +83,12 @@
     {
       "category": "薪水",
       "incomeOrExpenses": "收入",
-      "iconClass": "fas fa-dollar-sign"
+      "iconClass": "fas fa-envelope-open-dollar"
     },
     {
       "category": "零用錢",
       "incomeOrExpenses": "收入",
-      "iconClass": "fas fa-hand-holding-usd"
+      "iconClass": "fas fa-wallet"
     }
   ]
 }
