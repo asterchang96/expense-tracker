@@ -116,15 +116,15 @@ footer {
   
 }
 
-@media(max-width: 768px) {
+@media(max-width: 780px) {
   #indexPage{
     max-width: 100%;
     margin: 0px auto;
   }
 }
-@media(min-width: 768px) {
+@media(min-width: 780px) {
   #indexPage{
-    max-width: 768px;
+    max-width: 780px;
     margin: 0px auto;
   }
 }
