@@ -72,20 +72,34 @@
   </div>
 
   <ul class="pagination nav justify-content-center">
-    <li class="page-item">
-        <a class="page-link" href="?page={{prev}}" aria-label="Previous">
+    {{#if chooseCategory}}
+      <li class="page-item">
+        <a class="page-link" href="./search?chooseCategory={{ chooseCategory }}&dateStart={{ dateStart }}&dateEnd={{ dateEnd }}&page={{ prev }}" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
+      </li>
+      {{#each totalPage}}
+        {{#ifEqual this ../page}}
+          <li class="page-item active"><a class="page-link" href="#">{{this}}</a></li>
+        {{else}}
+          <li class="page-item"><a class="page-link" href="./search?chooseCategory={{ ../chooseCategory }}&dateStart={{ ../dateStart }}&dateEnd={{ ../dateEnd }}&page={{this}}">{{this}}</a></li>
+        {{/ifEqual}}
+      {{/each}}
+      <li class="page-item"><a class="page-link" href="./search?chooseCategory={{ chooseCategory }}&dateStart={{ dateStart }}&dateEnd={{ dateEnd }}&page={{ next }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+
+    {{else}}
+    <li class="page-item">
+      <a class="page-link"href="?page={{ prev }}"aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
     {{#each totalPage}}
-      {{#ifEqual this ../page}}
-        <li class="page-item active"><a class="page-link" href="#">{{this}}</a></li>
-      {{else}}
-        <li class="page-item"><a class="page-link" href="?page={{this}}">{{this}}</a></li>
-      {{/ifEqual}}
+    {{#ifEqual this ../page}}
+    <li class="page-item active"><a class="page-link" href="#">{{this}}</a></li>
+    {{else}}
+    <li class="page-item"><a class="page-link" href="?page={{this}}">{{this}}</a></li>
+    {{/ifEqual}}
     {{/each}}
-    <li class="page-item"><a class="page-link" href="?page={{next}}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
+    <li class="page-item"><a class="page-link" href="?page={{ next }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+    {{/if}}
   </ul>
   
 </div>

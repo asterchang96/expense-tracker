@@ -4,14 +4,20 @@ const router = express.Router()
 const Category = require('../../models/category') // 載入 category model
 const Record = require('../../models/record') // 載入 record model
 const { getIconClass } = require('../../public/javascripts/functionTools')
+const pageLimit = 5
 
 router.get('/', async(req, res)=> {
+  let offset = 0
   const categories = await Category.find().sort({ date: 'desc' }).lean()
   const { chooseCategory, dateStart, dateEnd } = req.query
   let totalAmount = 0
   const userId = req.user._id
   const formErrors = []
-  /* console.log(moment(dateStart).isBetween(dateStart, dateEnd))  */
+
+  //處理分頁
+  if (req.query.page) {
+    offset = (req.query.page - 1) * pageLimit
+  }
 
   //TODO 判斷合理性
   // 不可以dataStart大於dateEnd
@@ -33,16 +39,25 @@ router.get('/', async(req, res)=> {
   }
 
   return Record.find(conditionFilter)
-        .lean()
-        .sort({ date: 'desc'})
-        .then((records) => {
-          records.forEach((record) => {
-            if(record.incomeOrExpenses === '收入') totalAmount += record.amount
-            else totalAmount -= record.amount
-            record.iconClass = getIconClass(record.category, categories)
-          })
-          res.render('index', { records, categories, totalAmount, chooseCategory, dateStart, dateEnd })
-        })  
+    .lean()
+    .sort({ date: 'desc'})
+    .then((records) => {
+      const page = Number(req.query.page) || 1
+      const pages = Math.ceil(records.length / Number(pageLimit))
+      const totalPage = Array.from({ length: pages }).map((item, index) => index + 1)
+      const prev = page - 1 < 1 ? 1 : page - 1
+      const next = page + 1 > pages ? pages : page + 1
+
+      records.forEach((record) => {
+        if(record.incomeOrExpenses === '收入') totalAmount += record.amount
+        else totalAmount -= record.amount
+        record.iconClass = getIconClass(record.category, categories)
+      })
+
+      let pageRecord = records.slice(offset, offset+pageLimit)
+
+      res.render('index', { records: pageRecord, categories, totalAmount, chooseCategory, dateStart, dateEnd, page, totalPage, prev, next })
+    })  
 })
 
 module.exports = router
