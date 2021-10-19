@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const exphbs = require('express-handlebars')
+const handlebars = require('express-handlebars')
+const handlebarsHelpers = require('handlebars-helpers')(['array', 'comparison'])
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
@@ -10,26 +11,19 @@ const flash = require('connect-flash')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
-
 const routes = require('./routes/main')
-
 const usePassport = require('./config/passport')
 require('./config/mongoose')
-
-const handlebarsHelpers  = require('handlebars-helpers')(['array', 'comparison'])
-
-
 const app = express()
 const PORT = process.env.PORT
 
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers:handlebarsHelpers }))
+app.engine('hbs', handlebars({
+  defaultLayout : 'main',
+  extname: '.hbs',
+  helpers: require('./config/handlebars-helpers'), handlebarsHelpers
+}))
 app.set('view engine', 'hbs')
 
-const hbs = exphbs.create({ defaultLayout: 'main', extname: '.hbs' })
-hbs.handlebars.registerHelper('ifEqual', function (a, b, options) {
-    if (a === b) return options.fn(this)
-    return options.inverse(this);
-})
 
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -66,4 +60,3 @@ app.listen(PORT, () => {
 new 可以新增類別 但沒有在資料庫的類別會顯示不通過 -->做一個前端表單驗證
 */
 //　TODO　非同步語法錯誤　--> 目前已將所有await/async刪除
-// TODO getCategory 必須使用非同步語法(有資料是因為之後執行才有，但如果一開始使用則會系統崩潰)
