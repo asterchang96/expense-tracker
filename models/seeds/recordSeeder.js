@@ -13,7 +13,7 @@ const db = require('../../config/mongoose')
 
 const SEED_USER = {
   name: 'root',
-  email:'root@root.root',
+  email:'root@example.com',
   password: '12345678'
 }
 

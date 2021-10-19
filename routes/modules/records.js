@@ -15,6 +15,7 @@ router.get('/new', async (req, res) => {
 router.post('/', async (req, res, next) => {
   try{
     const { name, date, category, amount, merchant } = req.body
+    const incomeOrExpenses = '支出'
     const userId = req.user._id
     const formErrors = []
 
@@ -25,8 +26,9 @@ router.post('/', async (req, res, next) => {
     if (isNaN(Number(amount))) formErrors.push({ message: '金額欄位僅能輸入數字資料' })
     if (formErrors.length) return res.render('new', { categories, name, date, amount, category, formErrors })
 
-    const categoryData = await Category.find({ category })
-    const incomeOrExpenses = categoryData.incomeOrExpenses
+    //const categoryData = await Category.find({ category })
+    //console.log(categoryData)
+    
     await Record.create({ incomeOrExpenses, name, date, category, amount, merchant, userId })
     return res.redirect('/')
   }catch(err){
@@ -65,9 +67,7 @@ router.put('/:id', async (req, res, next) => {
     if (formErrors.length) return res.render('new', { name, date, amount, category, formErrors })
 
     const recordFilter = { _id, userId }
-    await Record.findOneAndUpdate(recordFilter, modifiedRecord, {
-      useFindAndModify: false
-    })
+    await Record.findOneAndUpdate(recordFilter, modifiedRecord, { useFindAndModify: false })
     req.flash('success_messages', '已成功修改支出紀錄！')
     res.redirect('/')
   }catch(err) {
@@ -77,15 +77,17 @@ router.put('/:id', async (req, res, next) => {
 
 })
 
-
-router.delete('/:id', (req, res) => {
-  // DELETE 可以使用 連至mongoDB刪除
-  const _id = req.params.id.trim()
-  const userId = req.user._id
-  return Record.findOne({ _id, userId })
-    .then(record => record.remove())
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+router.delete('/:id', async (req, res, next) => {
+  try{
+    // DELETE 可以使用 連至mongoDB刪除
+    const _id = req.params.id.trim()
+    const userId = req.user._id
+    let record = await Record.findOne({ _id, userId })
+    record.remove()
+    res.redirect('/')
+  }catch(err){
+    next(err)
+  }
 })
 
 module.exports = router

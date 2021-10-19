@@ -25,28 +25,12 @@
       "merchant": "美而美"
     },
     {
-      "name": "發票中獎",
-      "incomeOrExpenses": "收入",
-      "category": "零用錢",
-      "date": "2021-07-24",
-      "amount": 200,
-      "merchant": "全聯"
-    },
-    {
       "name": "駝色大衣",
       "incomeOrExpenses": "支出",
       "category": "衣",
       "date": "2021-07-22",
       "amount": 2000,
       "merchant": "ZARA"
-    },
-    {
-      "name": "6月薪資",
-      "incomeOrExpenses": "收入",
-      "category": "薪水",
-      "date": "2021-07-25",
-      "amount": 45000,
-      "merchant": "MYCompany"
     }
   ],
   "categorySeeders":[
@@ -58,7 +42,7 @@
     {
       "category": "衣",
       "incomeOrExpenses": "支出",
-      "iconClass": "fad fa-tshirt"
+      "iconClass": "fas fa-tshirt"
     },
     {
       "category": "住",
@@ -79,16 +63,6 @@
       "category": "樂",
       "incomeOrExpenses": "支出",
       "iconClass": "far fa-laugh-squint"
-    },
-    {
-      "category": "薪水",
-      "incomeOrExpenses": "收入",
-      "iconClass": "fas fa-envelope-open-dollar"
-    },
-    {
-      "category": "零用錢",
-      "incomeOrExpenses": "收入",
-      "iconClass": "fas fa-wallet"
     }
   ]
 }

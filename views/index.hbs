@@ -36,17 +36,17 @@
         {{!-- icon --}}
         <div id="showIconIncomeOrExpenses"class="col-3" style="align-self: center">
           <i id="categoryIcon"class="{{ this.iconClass }} fa-3x" style="width:60px; height:60px;"></i>
-          <span id="showIncomeOrExpenses" class="badge rounded-pill bg-warning text-dark">{{this.incomeOrExpenses}}</span>
+          <span id="showIncomeOrExpenses" class="badge rounded-pill bg-warning text-dark">{{this.category}}</span>
         </div>
 
         <div class="col-9" id="showNameCategoryDateAmount">
 
           <div id="showNameCategoryDate" class="col-8">
-            <span class="badge bg-light text-dark" id="showNameCategory">{{this.category}} / {{this.name}}</span>
+            <span class="badge bg-light text-dark" id="showNameCategory">{{!-- {{this.category}} /  --}}{{this.name}}</span>
             <span class="badge bg-light text-dark" id="showDate">{{this.date}}</span>               
           </div>
 
-          <div id="showAmount" class="col-4" style="text-align:center">
+          <div id="showAmount" class="col-3" style="text-align:center">
             <div class="list-group-item">{{this.amount}}</div>
           </div>
 

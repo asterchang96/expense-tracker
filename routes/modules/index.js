@@ -27,8 +27,9 @@ router.get('/', async (req, res, next) => {
     const next = page + 1 > pages ? pages : page + 1
 
     records.forEach((record) => {
-      if(record.incomeOrExpenses === '收入') totalAmount += record.amount
-      else totalAmount -= record.amount
+      totalAmount += record.amount
+/*       if(record.incomeOrExpenses === '收入') totalAmount += record.amount
+      else totalAmount -= record.amount */
       record.iconClass = getIconClass(record.category, categories)
     })
 
