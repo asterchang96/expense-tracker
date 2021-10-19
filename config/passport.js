@@ -30,10 +30,12 @@ module.exports = app => {
     clientID: process.env.FACEBOOK_ID,
     clientSecret: process.env.FACEBOOK_SECRET,
     callbackURL: process.env.FACEBOOK_CALLBACK,
-    profileFields: ['email', 'displayName']
+    profileFields: ['email', 'displayName', 'photos']
   },
   (accessToken, refreshToken, profile, done) => {
-    const { name, email } = profile._json
+    const { name, email, picture } = profile._json
+    console.log('picture', picture)
+    const { url }  = picture.data
     User.findOne({ email })
       .then(user => {
         //用戶已使用過
@@ -47,7 +49,8 @@ module.exports = app => {
           .then(hash => User.create({
             name,
             email,
-            password: hash
+            password: hash,
+            photo: url,
           }))
           .then(user => done(null, user))
           .catch(err => done(err, user))

@@ -36,6 +36,18 @@ footer {
   opacity: 0.9;
 }
 
+#avatarNav{
+  border-radius: 50%;
+  width: 40px; 
+  height:40px
+}
+
+#avatarNavmenu{
+  border-radius: 50%;
+  width: 60px; 
+  height:60px
+}
+
 /* index */
 
 #showTotalAmount{

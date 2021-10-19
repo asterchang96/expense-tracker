@@ -10,22 +10,41 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light bg-light " style="justify-content:space-between">
+  <nav class="navbar navbar-light bg-light " style="display:flex;flex-flow:row">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">
-        <span class="navbar-brand mb-0 h1">{{#if isAuthenticated}}{{ user.name }}'s {{else}}我{{/if}}的記帳本</span>
-      </a>
-    {{#if isAuthenticated}}
-    <div class="nav-group" id="actionLogoutNew">
-    <a href="/records/new"><button class="btn btn-warning my-2 my-sm-0">新增</button></a>
-    <a href="/users/logout"><button class="btn btn-outline-secondary my-2 my-sm-0">LogOut</button></a>
+    <a class="navbar-brand" href="/">我的記帳本</a>
+    <div class="navbar-right dropstart">
+      {{#if isAuthenticated}}
+        <li class="nav-item dropdown" style="list-style-type:none;">
+          <a class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ user.photo }}" id="avatarNav"></img>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="min-width: 200px;">
+            <div class="card border-0">
+              <div class="row g-0">
+                <div class="col-md-5" style="display:flex;justify-content:center;align-items:center">
+                  <img src="{{ user.photo }}" id="avatarNavmenu"></img>
+                </div>
+                <div class="col-md-7">
+                  <div class="card-body">
+                    <p class="card-title" style="font-weight:bold;  font-size:large;">{{ user.name }}</p>
+                    <p class="card-text" style="color:blue; font-size:small;"><a href="/users/logout" style="text-decoration: none;">修改資料</a></p> {{!-- TODO url --}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="/users/logout"><i class="fas fa-sign-out-alt"></i> 登出</a></li>
+          </ul>
+        </li>   
+      {{else}}
+      <a href="/users/login"><button class="btn btn-outline-secondary my-2 my-sm-0">登入</button></a>
+      {{/if}}
     </div>
-    {{else}}
-    <a href="/users/login"><button class="btn btn-outline-secondary my-2 my-sm-0">Login</button></a>
-    {{/if}}
-    </div>
-    
-    
+  </div>
   </nav>
 
   <div class="container mb-5">

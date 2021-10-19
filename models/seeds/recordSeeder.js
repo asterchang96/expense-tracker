@@ -14,7 +14,8 @@ const db = require('../../config/mongoose')
 const SEED_USER = {
   name: 'root',
   email:'root@example.com',
-  password: '12345678'
+  password: '12345678',
+  photo: 'https://i.imgur.com/7Y2HmNG.png'
 }
 
 db.once('open', () => {
@@ -24,7 +25,8 @@ db.once('open', () => {
     .then(hash => User.create({
       name: SEED_USER.name,
       email: SEED_USER.email,
-      password: hash
+      password: hash,
+      photo: SEED_USER.photo
     }))
     .then(user => {
       const userId = user._id
