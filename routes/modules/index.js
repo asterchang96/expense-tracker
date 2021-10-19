@@ -3,7 +3,7 @@ const router = express.Router()
 
 const Category = require('../../models/category') // 載入 category model
 const Record = require('../../models/record') // 載入 record model
-const { getIconClass } = require('../../public/functions')
+const { getIconClass } = require('../../public/tools/functions')
 const pageLimit = 5
 
 router.get('/', async (req, res, next) => {
