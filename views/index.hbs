@@ -6,7 +6,7 @@
       <select name="chooseCategory" class="form-select">
       <option value="all" selected>所有類別</option>
       {{#each categories}}
-        <option value="{{ this.category }}" {{#is this.category ../chooseCategory}}selected{{/is}}>{{ this.category }}</option>
+        <option value="{{ this.category }}" {{#ifEqual this.category ../chooseCategory}}selected{{/ifEqual}}>{{ this.category }}</option>
       {{/each}}
       </select>
     </div>

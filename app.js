@@ -1,7 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const handlebars = require('express-handlebars')
-const handlebarsHelpers = require('handlebars-helpers')(['array', 'comparison'])
+const Handlebars = require('handlebars')
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
+const expressHandlebars = require('express-handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
@@ -17,13 +18,16 @@ require('./config/mongoose')
 const app = express()
 const PORT = process.env.PORT
 
-app.engine('hbs', handlebars({
+app.engine('hbs', expressHandlebars({
   defaultLayout : 'main',
   extname: '.hbs',
-  helpers: require('./config/handlebars-helpers'), handlebarsHelpers
+  helpers: allowInsecurePrototypeAccess(Handlebars)
 }))
 app.set('view engine', 'hbs')
-
+Handlebars.registerHelper('ifEqual', function (a, b, options) {
+    if (a === b) return options.fn(this)
+    return options.inverse(this);
+})
 
 
 app.use(bodyParser.urlencoded({ extended: true }))

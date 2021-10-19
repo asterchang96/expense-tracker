@@ -3,7 +3,7 @@ const router = express.Router()
 
 const Category = require('../../models/category') // 載入 category model
 const Record = require('../../models/record') // 載入 record model
-const { getIconClass } = require('../../config/handlebars-helpers')
+const { getIconClass } = require('../../public/functions')
 const pageLimit = 5
 
 router.get('/', async (req, res, next)=> {
@@ -39,8 +39,7 @@ router.get('/', async (req, res, next)=> {
       conditionFilter.date = { $lte: (dateEnd) }
     }
     console.log(conditionFilter)
-    let records = await Record.find(conditionFilter)
-    console.log(records)
+    let records = await Record.find(conditionFilter).lean()
     const page = Number(req.query.page) || 1
     const pages = Math.ceil(records.length / Number(pageLimit))
     const totalPage = Array.from({ length: pages }).map((item, index) => index + 1)
