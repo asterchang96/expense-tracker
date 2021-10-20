@@ -2,9 +2,14 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 const bcrypt = require('bcryptjs')
-const User = require('../../models/user')
+const multer = require('multer')
+const upload = multer({ dest: 'temp/' })
+const imgur = require('imgur-node-api')
+const fs = require('fs')
 
+const User = require('../../models/user')
 const { authenticator } = require('../../middleware/auth')
+const { constants } = require('http2')
 //登入
 router.get('/login', (req, res) => {
   res.render('login')
@@ -70,12 +75,23 @@ router.get('/setting', authenticator, async (req, res) => {
   return res.render('setting')
 })
 
-router.put('/setting', authenticator, async (req, res, next) => {
+router.put('/setting', authenticator, upload.single('photo'), async (req, res, next) => {
   try{
     const recordFilter = { email: req.user.email }
-    const modifiedRecord = req.body
-    const user = await User.findOneAndUpdate(recordFilter, modifiedRecord, { useFindAndModify: false })
-    return res.redirect('/')
+    const { file } = req
+    let modifiedRecord = {}
+    if (file) {
+      imgur.setClientID(process.env.IMGUR_CLIENT_ID)
+      imgur.upload(file.path, async(err, img) => {
+        modifiedRecord.photo = file ? img.data.link : user.photo
+        if(req.body) modifiedRecord.name = req.body.name
+        await User.findOneAndUpdate(recordFilter, modifiedRecord, { useFindAndModify: false })
+      })
+    }else{
+      if(req.body) modifiedRecord.name = req.body.name
+      await User.findOneAndUpdate(recordFilter, modifiedRecord, { useFindAndModify: false })
+    }
+    return res.render('setting')
   }catch(err) {
     next(err)
   }

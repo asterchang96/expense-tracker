@@ -5,31 +5,23 @@
     </div>
   </div>
   {{!-- avatar --}}
-  <div class="row mb-4">
-    <div class="col-12 col-md-8 mx-auto">
-      <form action="/users/setting?_method=PUT" method="POST" encType="multipart/form-data">
-        <div class="mb-3">
-          <div class="avatar-128 my-3">
-            <img src="{{ user.photo }}" id="avatarInSetting" class="d-block" alt="user profile image">
+  <form action="/users/setting?_method=PUT" method="POST" encType="multipart/form-data" style="display: flex;flex-flow:column">
+    <div class="form-group row mb-4">
+      <div class="col-12 col-md-8 mx-auto">
+          <div class="my-3"style="display: flex;justify-content:center">
+            <img src="{{ user.photo }}" id="avatarInSetting" alt="user profile image">
           </div>
-          <label for="avatar" class="form-label">修改使用者頭像：</label>
-          <input type="file" class="form-control" id="avatar" name="photo" accept="image/png, image/jpeg" required>
-        </div>
-        <button type="submit" class="btn btn-primary">送出</button>
-      </form>
+          <label for="avatar" class="form-label">使用者照片</label>
+          <input type="file" class="form-control" id="avatar" name="photo" accept="image/png, image/jpeg" value="{{ user.photo }}">
+      </div>
     </div>
-  </div>
   {{!-- username --}}
-  <div class="row mb-4">
-    <div class="col-12 col-md-8 mx-auto">
-      <form action="/users/setting?_method=PUT" method="POST" autocomplete="off">
-        <div class="mb-3">
-          <p>目前的顯示名稱：{{#if user.name}}{{ user.name }}{{else}}（未設定）{{/if}}</p>
-          <label for="username" class="form-label">修改顯示名稱為：</label>
-          <input type="text" class="form-control" id="username" name="name" required>
-        </div>
-        <button type="submit" class="btn btn-primary">送出</button>
-      </form>
+    <div class="form-group row mb-4">
+      <div class="col-12 col-md-8 mx-auto">
+          <label for="username" class="form-label">使用者名稱</label>
+          <input type="text" class="form-control" id="username" name="name" value="{{ user.name }}">
+      </div>
     </div>
-  </div>
+    <button type="submit" class="btn btn-primary">儲存</button>
+  </form>
 </div>
