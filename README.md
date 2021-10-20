@@ -2,6 +2,9 @@
 
 這是一個 Node.js + Express 打造的記帳簿，你可以在[這裡](https://shrouded-basin-53328.herokuapp.com/)看到
 
+預設使用者帳號:root@example.com
+預設使用者密碼:12345678
+
 
 ## 產品功能
 
