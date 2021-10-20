@@ -38,7 +38,6 @@ router.get('/', async (req, res, next)=> {
     }else if(dateStart && !dateEnd){
       conditionFilter.date = { $lte: (dateEnd) }
     }
-    console.log(conditionFilter)
     let records = await Record.find(conditionFilter).lean()
     const page = Number(req.query.page) || 1
     const pages = Math.ceil(records.length / Number(pageLimit))
