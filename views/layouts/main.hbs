@@ -14,6 +14,7 @@
     <div class="container-fluid">
     <a class="navbar-brand" href="/">我的記帳本</a>
     <div class="navbar-right dropstart">
+      
       {{#if isAuthenticated}}
         <li class="nav-item dropdown" style="list-style-type:none;">
           <a class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,7 +29,7 @@
                 <div class="col-md-7">
                   <div class="card-body">
                     <p class="card-title" style="font-weight:bold;  font-size:large;">{{ user.name }}</p>
-                    <p class="card-text" style="color:blue; font-size:small;"><a href="/users/logout" style="text-decoration: none;">修改資料</a></p> {{!-- TODO url --}}
+                    <p class="card-text" style="color:blue; font-size:small;"><a href="/users/setting" style="text-decoration: none;">修改資料</a></p>
                   </div>
                 </div>
               </div>

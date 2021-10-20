@@ -4,6 +4,7 @@ const passport = require('passport')
 const bcrypt = require('bcryptjs')
 const User = require('../../models/user')
 
+const { authenticator } = require('../../middleware/auth')
 //登入
 router.get('/login', (req, res) => {
   res.render('login')
@@ -63,6 +64,21 @@ router.post('/register', async (req, res, next) => {
     next(err)
   }
 
+})
+/* setting */
+router.get('/setting', authenticator, async (req, res) => {
+  return res.render('setting')
+})
+
+router.put('/setting', authenticator, async (req, res, next) => {
+  try{
+    const recordFilter = { email: req.user.email }
+    const modifiedRecord = req.body
+    const user = await User.findOneAndUpdate(recordFilter, modifiedRecord, { useFindAndModify: false })
+    return res.redirect('/')
+  }catch(err) {
+    next(err)
+  }
 })
 
 router.get('/logout', (req, res) => {

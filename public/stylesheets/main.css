@@ -38,8 +38,8 @@ footer {
 
 #avatarNav{
   border-radius: 50%;
-  width: 40px; 
-  height:40px
+  width: 30px; 
+  height:30px
 }
 
 #avatarNavmenu{
@@ -158,4 +158,12 @@ border-bottom-right-radius:0;
 
 .show {
   display: block;
+}
+
+/* setting */
+
+#avatarInSetting{
+  border-radius: 50%;
+  width: 100px; 
+  height: 100px
 }
