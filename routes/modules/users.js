@@ -71,7 +71,7 @@ router.post('/register', async (req, res, next) => {
 
 })
 /* setting */
-router.get('/setting', authenticator, async (req, res) => {
+router.get('/setting', authenticator, (req, res) => {
   return res.render('setting')
 })
 
@@ -80,18 +80,37 @@ router.put('/setting', authenticator, upload.single('photo'), async (req, res, n
     const recordFilter = { email: req.user.email }
     const { file } = req
     let modifiedRecord = {}
+    let errors = []
+    if(file){
+      if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        console.log(file)
+      }else{
+        errors.push({ message: '僅支援jp(e)g或png格式之檔案' })
+      }      
+    }
+
+
+    if (req.body.name) {
+      req.body.name.trim().length ? req.user.name = req.body.name: errors.push({ message: '請重新輸入使用者名稱' })
+    }
+
+    if (errors.length) {
+      req.flash('error_msg', errors.message)
+      return res.render('setting', { errors })
+    } 
+
     if (file) {
       imgur.setClientID(process.env.IMGUR_CLIENT_ID)
       imgur.upload(file.path, async(err, img) => {
         modifiedRecord.photo = file ? img.data.link : user.photo
         if(req.body) modifiedRecord.name = req.body.name
-        await User.findOneAndUpdate(recordFilter, modifiedRecord, { useFindAndModify: false })
+        const user = await User.findOneAndUpdate(recordFilter, modifiedRecord, { useFindAndModify: false })
       })
     }else{
       if(req.body) modifiedRecord.name = req.body.name
       await User.findOneAndUpdate(recordFilter, modifiedRecord, { useFindAndModify: false })
-    }
-    return res.render('setting')
+    }  
+    return res.redirect('/')
   }catch(err) {
     next(err)
   }
