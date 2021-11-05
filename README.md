@@ -1,4 +1,4 @@
-# expense-tracker
+# 我的記帳本
 
 這是一個 Node.js + Express 打造的記帳簿，你可以在[這裡](https://shrouded-basin-53328.herokuapp.com/)看到
 
